@@ -21,7 +21,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests google-genai
 
       - name: Restore tokens.json from secret
         run: echo '${{ secrets.TOKENS_JSON }}' > tokens.json
