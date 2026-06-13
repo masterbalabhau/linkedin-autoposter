@@ -73,7 +73,7 @@ LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
 # Google Imagen 3 endpoint
 IMAGEN_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "imagen-4.0-generate-001:predict"
+    "imagen-4.0-generate-001:generateImages"
 )
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
@@ -247,20 +247,22 @@ def generate_image(prompt, post_id=0):
     if not prompt:
         return None
 
-    print("Generating image with Imagen 3...")
+    print("Generating image with Imagen 4...")
     try:
         resp = requests.post(
             IMAGEN_URL,
             headers={"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY},
             json={
-                "instances": [{"prompt": prompt}],
-                "parameters": {"sampleCount": 1},
+                "prompt": prompt,
+                "numberOfImages": 1,
             },
             timeout=60,
         )
+        if not resp.ok:
+            print("Imagen error body:", resp.text[:500])
         resp.raise_for_status()
         data = resp.json()
-        b64 = data["predictions"][0]["bytesBase64Encoded"]
+        b64 = data["generatedImages"][0]["image"]["imageBytes"]
         img_bytes = base64.b64decode(b64)
 
         # Write to a temp file
@@ -271,6 +273,10 @@ def generate_image(prompt, post_id=0):
         tmp.close()
         print("Image generated: %s" % tmp.name)
         return tmp.name
+    except requests.exceptions.HTTPError as e:
+        body = getattr(e.response, "text", "")[:300] if e.response else ""
+        print("Warning: image generation failed (%s) %s — posting text only." % (e, body))
+        return None
     except Exception as e:
         print("Warning: image generation failed (%s) — posting text only." % e)
         return None
