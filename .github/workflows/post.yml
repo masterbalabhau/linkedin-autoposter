@@ -31,6 +31,7 @@ jobs:
           LI_CLIENT_ID: ${{ secrets.LI_CLIENT_ID }}
           LI_CLIENT_SECRET: ${{ secrets.LI_CLIENT_SECRET }}
           COMPANY_ID: ${{ secrets.COMPANY_ID }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: python linkedin_poster.py post --yes
 
       - name: Update TOKENS_JSON secret if refreshed
