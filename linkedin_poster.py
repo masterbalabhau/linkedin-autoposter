@@ -73,7 +73,7 @@ LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
 # Google Imagen 3 endpoint
 IMAGEN_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "imagen-3.0-generate-002:predict"
+    "imagen-4.0-generate-001:predict"
 )
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
@@ -251,8 +251,7 @@ def generate_image(prompt, post_id=0):
     try:
         resp = requests.post(
             IMAGEN_URL,
-            headers={"Content-Type": "application/json"},
-            params={"key": GOOGLE_API_KEY},
+            headers={"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY},
             json={
                 "instances": [{"prompt": prompt}],
                 "parameters": {
