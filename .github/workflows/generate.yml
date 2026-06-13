@@ -21,11 +21,13 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r requirements.txt
 
-      - name: Generate new post with Gemini
+      - name: Generate new post (Claude Opus 4.8, Gemini fallback)
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          TEXT_PROVIDER: ${{ vars.TEXT_PROVIDER }}
         run: python generate_post.py
 
       - name: Commit new post to posts.json

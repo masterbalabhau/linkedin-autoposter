@@ -28,12 +28,14 @@ LinkedIn app must have ALL products enabled (Developer Portal → Products):
 
 Scopes used: openid profile w_member_social w_organization_social r_organization_social
 
-Requires: pip install requests
+Requires: pip install -r requirements.txt
 """
 
 import base64
 import json
 import os
+import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -43,6 +45,13 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import requests
+
+from image_prompts import (
+    STYLE_ASPECT_RATIO,
+    build_imagen_prompt,
+    normalize_style,
+    pick_image_style,
+)
 
 # ----------------------------- CONFIG -----------------------------
 def _load_dotenv():
@@ -64,17 +73,22 @@ _load_dotenv()
 CLIENT_ID = os.environ.get("LI_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("LI_CLIENT_SECRET", "")
 COMPANY_ID = os.environ.get("COMPANY_ID", "")       # numeric org ID, e.g. "12345678"
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "") # Google AI Studio key for Imagen 3
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "") # Google AI Studio key for Imagen
 REDIRECT_URI = "http://localhost:8765/callback"  # must match app's Authorized redirect URL
 # Include org scopes so one auth covers both personal + company
 SCOPES = "openid profile w_member_social w_organization_social r_organization_social"
 LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
 
-# Google Imagen 3 endpoint
-IMAGEN_MODEL = "imagen-4.0-generate-001"  # Used via google-genai SDK
+# Google Imagen 4 family (Ultra = highest quality + 2K). Override via env.
+#   imagen-4.0-ultra-generate-001  (best)
+#   imagen-4.0-generate-001        (standard)
+#   imagen-4.0-fast-generate-001   (cheap/fast)
+IMAGEN_MODEL = os.environ.get("IMAGEN_MODEL", "").strip() or "imagen-4.0-ultra-generate-001"
+IMAGE_SIZE = os.environ.get("IMAGE_SIZE", "").strip() or "2K"  # 1K or 2K (Ultra/Standard)
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
 POSTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posts.json")
+PREVIEW_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "previews")
 
 AUTH_URL = "https://www.linkedin.com/oauth/v2/authorization"
 TOKEN_URL = "https://www.linkedin.com/oauth/v2/accessToken"
@@ -233,10 +247,10 @@ def valid_access_token():
     return t["access_token"], t["person_urn"], t.get("company_urn", "")
 
 
-# ===================== Imagen 3 generation =====================
-def generate_image(prompt, post_id=0):
+# ===================== Imagen 4 generation =====================
+def generate_image(prompt, post_id=0, style="photo"):
     """
-    Call Google Imagen 4 via google-genai SDK to generate an image.
+    Call Google Imagen 4 (Ultra by default) via google-genai SDK.
     Returns a local temp file path on success, or None if unavailable/failed.
     """
     if not GOOGLE_API_KEY:
@@ -244,16 +258,40 @@ def generate_image(prompt, post_id=0):
     if not prompt:
         return None
 
-    print("Generating image with Imagen 4...")
+    style = normalize_style(style)
+    full_prompt = build_imagen_prompt(prompt, style=style)
+    aspect_ratio = STYLE_ASPECT_RATIO[style]
+
+    print(
+        "Generating image with %s (%s, %s, %s)..."
+        % (IMAGEN_MODEL, style, aspect_ratio, IMAGE_SIZE)
+    )
     try:
         from google import genai as _genai
         from google.genai import types as _gtypes
         client = _genai.Client(api_key=GOOGLE_API_KEY)
-        response = client.models.generate_images(
-            model=IMAGEN_MODEL,
-            prompt=prompt,
-            config=_gtypes.GenerateImagesConfig(number_of_images=1),
-        )
+        cfg_kwargs = {
+            "number_of_images": 1,
+            "aspect_ratio": aspect_ratio,
+            "output_mime_type": "image/png",
+        }
+        # image_size (2K) is only supported on Ultra/Standard, not Fast.
+        if "fast" not in IMAGEN_MODEL:
+            cfg_kwargs["image_size"] = IMAGE_SIZE
+        try:
+            response = client.models.generate_images(
+                model=IMAGEN_MODEL,
+                prompt=full_prompt,
+                config=_gtypes.GenerateImagesConfig(**cfg_kwargs),
+            )
+        except TypeError:
+            # Older SDK without image_size support — retry without it.
+            cfg_kwargs.pop("image_size", None)
+            response = client.models.generate_images(
+                model=IMAGEN_MODEL,
+                prompt=full_prompt,
+                config=_gtypes.GenerateImagesConfig(**cfg_kwargs),
+            )
         img_bytes = response.generated_images[0].image.image_bytes
 
         # Write to a temp file
@@ -264,6 +302,12 @@ def generate_image(prompt, post_id=0):
         tmp.close()
         print("Image generated:", tmp.name)
         return tmp.name
+    except ImportError:
+        print(
+            "Warning: google-genai not installed — posting text only.\n"
+            "  pip install -r requirements.txt"
+        )
+        return None
     except Exception as e:
         print("Warning: image generation failed (%s) — posting text only." % e)
         return None
@@ -317,13 +361,29 @@ def next_queue_item(posts):
     return idx, posts[idx]
 
 
+def render_infographic_image(item, idx):
+    """Render a designed infographic slide (crisp text) to a temp PNG."""
+    data = item.get("infographic")
+    if not data:
+        return None
+    try:
+        from infographic import render_infographic
+    except ImportError:
+        return None
+    tmp = tempfile.NamedTemporaryFile(
+        suffix=".png", prefix="li_infographic_%d_" % idx, delete=False
+    )
+    tmp.close()
+    return render_infographic(data, tmp.name)
+
+
 def resolve_image(item, idx=0):
     """
     Returns (path_or_None, status) where status is:
-      "ready"   — local file found
-      "generated" — Imagen 3 produced a temp file
-      "missing"  — path in JSON but file not on disk and Imagen unavailable
-      "none"    — no image at all
+      "ready"     — local file found
+      "generated" — produced a temp file (template or Imagen)
+      "missing"   — path in JSON but file not on disk and generation unavailable
+      "none"      — no image at all
     """
     # 1. Explicit file path in posts.json
     if item.get("image"):
@@ -332,23 +392,65 @@ def resolve_image(item, idx=0):
             img_path = os.path.join(os.path.dirname(POSTS_FILE), img_path)
         if os.path.exists(img_path):
             return img_path, "ready"
-        # File path set but missing on disk — fall through to Imagen
-    # 2. Generate via Imagen 3:
-    #    Use image_prompt if set, otherwise derive one from the post text
+        # File path set but missing on disk — fall through to generation
+
+    style = normalize_style(item.get("image_style") or pick_image_style([]))
+
+    # 2a. Designed infographic (HTML template → crisp readable text)
+    if style == "infographic" and item.get("infographic"):
+        path = render_infographic_image(item, idx)
+        if path:
+            return path, "generated"
+        # template unavailable — fall back to a photo via Imagen below
+
+    # 2b. Photorealistic image via Imagen
     if GOOGLE_API_KEY:
         prompt = item.get("image_prompt") or (
-            "Professional LinkedIn infographic for: " + item.get("text", "")[:300]
+            "A modern Dubai business team collaborating on ERP and AI projects"
         )
-        gen_path = generate_image(prompt, idx)
+        photo_style = "photo" if style == "infographic" else style
+        gen_path = generate_image(prompt, idx, style=photo_style)
         if gen_path:
             return gen_path, "generated"
+
     # 3. Nothing available
     if item.get("image"):
         return item["image"], "missing"
     return None, "none"
 
 
-def show_preview(idx, item):
+def abs_path(path):
+    if not path:
+        return path
+    if os.path.isabs(path):
+        return path
+    return os.path.abspath(os.path.join(os.path.dirname(POSTS_FILE), path))
+
+
+def persist_preview_image(src_path, idx):
+    """Copy generated image into project previews/ folder for easy viewing."""
+    os.makedirs(PREVIEW_DIR, exist_ok=True)
+    dest = os.path.join(PREVIEW_DIR, "post_%d_preview.png" % idx)
+    shutil.copy2(src_path, dest)
+    return os.path.abspath(dest)
+
+
+def open_image(path):
+    """Open image in the default viewer (Preview on macOS)."""
+    if not path or not os.path.exists(path):
+        return
+    try:
+        if sys.platform == "darwin":
+            subprocess.run(["open", path], check=False)
+        elif sys.platform.startswith("linux"):
+            subprocess.run(["xdg-open", path], check=False)
+        elif sys.platform == "win32":
+            os.startfile(path)  # type: ignore[attr-defined]
+    except OSError:
+        pass
+
+
+def show_preview(idx, item, open_viewer=True):
     img_path, img_status = resolve_image(item, idx)
     divider = "=" * 60
     print(divider)
@@ -360,11 +462,20 @@ def show_preview(idx, item):
         print("Image: none (text-only post)")
     elif img_status in ("ready", "generated"):
         label = "Image (generated)" if img_status == "generated" else "Image"
+        if img_status == "generated":
+            img_path = persist_preview_image(img_path, idx)
+        else:
+            img_path = abs_path(img_path)
         print("%s: %s" % (label, img_path))
+        if item.get("image_style"):
+            print("Image style: %s" % item["image_style"])
         if item.get("alt"):
             print("Alt text: %s" % item["alt"])
         elif item.get("image_prompt"):
             print("Alt text: (auto from prompt)")
+        if open_viewer:
+            open_image(img_path)
+            print("Opened in default viewer.")
     else:
         print("Image: %s (missing — will generate or post text only)" % img_path)
     print(divider)
@@ -423,10 +534,13 @@ def _publish_to_author(token, author_urn, item, idx=0, generated_img_path=None):
 def publish_post(idx, item, posts):
     token, person_urn, company_urn = valid_access_token()
 
-    # Generate image once (Imagen 3 or local file) — reuse for both posts
+    # Produce the image ONCE (template infographic or Imagen photo) and reuse it
+    # for both personal + company posts.
     gen_path = None
-    if item.get("image_prompt") and GOOGLE_API_KEY and not item.get("image"):
-        gen_path = generate_image(item["image_prompt"], idx)
+    if not item.get("image"):
+        path, status = resolve_image(item, idx)
+        if status == "generated":
+            gen_path = path
 
     # Post to personal profile
     personal_urn = _publish_to_author(token, person_urn, item, idx, gen_path)
@@ -463,7 +577,7 @@ def do_preview():
     if item is None:
         print("Queue empty - nothing to preview.")
         return
-    show_preview(idx, item)
+    show_preview(idx, item, open_viewer="--no-open" not in sys.argv)
 
 
 def do_post(skip_confirm=False):

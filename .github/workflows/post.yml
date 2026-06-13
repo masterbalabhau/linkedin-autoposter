@@ -21,7 +21,12 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests google-genai
+        run: pip install -r requirements.txt
+
+      - name: Install Chromium + emoji font for infographics
+        run: |
+          sudo apt-get update && sudo apt-get install -y fonts-noto-color-emoji
+          python -m playwright install --with-deps chromium
 
       - name: Restore tokens.json from secret
         run: echo '${{ secrets.TOKENS_JSON }}' > tokens.json
@@ -32,6 +37,8 @@ jobs:
           LI_CLIENT_SECRET: ${{ secrets.LI_CLIENT_SECRET }}
           COMPANY_ID: ${{ secrets.COMPANY_ID }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          IMAGEN_MODEL: ${{ vars.IMAGEN_MODEL }}
+          IMAGE_SIZE: ${{ vars.IMAGE_SIZE }}
         run: python linkedin_poster.py post --yes
 
       - name: Update TOKENS_JSON secret if refreshed
