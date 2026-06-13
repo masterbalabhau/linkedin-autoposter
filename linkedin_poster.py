@@ -254,12 +254,7 @@ def generate_image(prompt, post_id=0):
             headers={"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY},
             json={
                 "instances": [{"prompt": prompt}],
-                "parameters": {
-                    "sampleCount": 1,
-                    "aspectRatio": "4:5",          # portrait — best for LinkedIn feed
-                    "safetyFilterLevel": "block_few",
-                    "personGeneration": "allow_adult",
-                },
+                "parameters": {"sampleCount": 1},
             },
             timeout=60,
         )
