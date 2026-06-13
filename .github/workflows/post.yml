@@ -1,0 +1,49 @@
+name: LinkedIn Auto Post
+
+on:
+  schedule:
+      - cron: '30 3 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31 * *'
+        workflow_dispatch:
+
+        jobs:
+          post:
+              runs-on: ubuntu-latest
+                  permissions:
+                        contents: write
+
+                            steps:
+                                  - name: Checkout repo
+                                          uses: actions/checkout@v4
+
+                                                - name: Set up Python
+                                                        uses: actions/setup-python@v5
+                                                                with:
+                                                                          python-version: '3.12'
+
+                                                                                - name: Install dependencies
+                                                                                        run: pip install requests
+
+                                                                                              - name: Restore tokens.json from secret
+                                                                                                      run: echo '${{ secrets.TOKENS_JSON }}' > tokens.json
+                                                                                                      
+                                                                                                            - name: Run LinkedIn poster
+                                                                                                                    env:
+                                                                                                                              LI_CLIENT_ID: ${{ secrets.LI_CLIENT_ID }}
+                                                                                                                                        LI_CLIENT_SECRET: ${{ secrets.LI_CLIENT_SECRET }}
+                                                                                                                                                  COMPANY_ID: ${{ secrets.COMPANY_ID }}
+                                                                                                                                                          run: python linkedin_poster.py post --yes
+                                                                                                                                                          
+                                                                                                                                                                - name: Update TOKENS_JSON secret if refreshed
+                                                                                                                                                                        env:
+                                                                                                                                                                                  GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+                                                                                                                                                                                          run: |
+                                                                                                                                                                                                    NEW_TOKENS=$(cat tokens.json)
+                                                                                                                                                                                                              gh secret set TOKENS_JSON --body "$NEW_TOKENS" --repo ${{ github.repository }}
+                                                                                                                                                                                                              
+                                                                                                                                                                                                                    - name: Commit updated posts.json
+                                                                                                                                                                                                                            run: |
+                                                                                                                                                                                                                                      git config user.name "LinkedIn Bot"
+                                                                                                                                                                                                                                                git config user.email "bot@github.com"
+                                                                                                                                                                                                                                                          git add posts.json
+                                                                                                                                                                                                                                                                    git diff --staged --quiet || git commit -m "chore: mark post as published [skip ci]"
+                                                                                                                                                                                                                                                                              git push
