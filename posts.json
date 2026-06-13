@@ -60,5 +60,40 @@
     "image_prompt": "A diverse team of skilled software architects, dressed in smart business casual, intensely collaborating around a large, sleek display in a modern, sunlit office in Dubai. Their expressions convey focus and problem-solving, with one person pointing towards the screen. The scene emphasizes high-performance computing and strategic discussion.",
     "posted": false,
     "generated_at": "2026-06-14"
+  },
+  {
+    "topic": "Odoo.sh CI/CD Enterprise Deployments",
+    "text": "Is your Odoo enterprise deployment a constant battle against manual errors, inconsistent environments, and slow releases? In the fast-paced UAE market, agility is non-negotiable, and traditional deployment methods simply can't keep up.\n\nAt iNOTRO Multiservices, we've seen firsthand how crucial robust Continuous Integration/Continuous Deployment (CI/CD) pipelines are for large-scale Odoo projects. For Odoo enterprises, especially those relying on Odoo.sh, leveraging its native CI/CD capabilities isn't just a best practice – it's a competitive edge.\n\nFrom my perspective as an Odoo architect with over a decade of experience, Odoo.sh’s integrated CI/CD drastically simplifies complex deployments, reduces risk, and accelerates innovation. Here's how it transforms your Odoo lifecycle:\n\n→ Automated Quality Gates: Every code change triggers automated tests, ensuring custom modules and integrations don't break existing functionalities before reaching production. This proactive approach saves countless hours in debugging.\n→ Seamless Environment Management: Easily spin up development, staging, and production environments, ensuring consistency. Developers can test features in isolated branches without impacting live operations, then merge with confidence.\n→ Rapid, Reliable Releases: Implement new features or critical bug fixes swiftly. With a streamlined pipeline, deployments that once took days can now be completed in hours, minimizing downtime and maximizing business continuity.\n→ Version Control & Rollback Assurance: Full Git integration means every change is tracked. If an issue arises post-deployment, rolling back to a stable version is straightforward, giving you peace of mind.\n\nThis level of automation is no longer a luxury; it's essential for any UAE enterprise looking to truly scale and innovate with Odoo. We help businesses in Dubai and across the GCC implement these mature DevOps practices.\n\nWant to accelerate your Odoo deployments and reduce risks? Comment 'DEPLOY' below, and our team will share a personalized strategy.\n\n#Odoo #OdooSh #CICD #DevOps #ERPSolutions #DigitalTransformation #UAETech #iNOTRO #OdooExpert",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-13",
+    "infographic": {
+      "title": "Unlock Odoo Deployment Speed",
+      "subtitle": "Streamline Enterprise Odoo with Odoo.sh CI/CD.",
+      "points": [
+        {
+          "emoji": "✅",
+          "heading": "Automate Quality",
+          "body": "Every code change triggers tests, preventing bugs before production."
+        },
+        {
+          "emoji": "🌐",
+          "heading": "Manage Environments",
+          "body": "Seamlessly spin up dev, staging, and production with consistency."
+        },
+        {
+          "emoji": "🚀",
+          "heading": "Accelerate Releases",
+          "body": "Deploy new features and fixes in hours, not days."
+        },
+        {
+          "emoji": "↩️",
+          "heading": "Ensure Rollbacks",
+          "body": "Full Git integration means easy, safe reversion to stable versions."
+        }
+      ],
+      "cta": "Comment \"DEPLOY\" for a personalized strategy."
+    }
   }
 ]
