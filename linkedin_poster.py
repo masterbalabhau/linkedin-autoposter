@@ -338,7 +338,7 @@ def resolve_image(item, idx=0):
     Returns (path_or_None, status) where status is:
       "ready"   — local file found
       "generated" — Imagen 3 produced a temp file
-      "missing"  — path in JSON but file not on disk
+      "missing"  — path in JSON but file not on disk and Imagen unavailable
       "none"    — no image at all
     """
     # 1. Explicit file path in posts.json
@@ -348,13 +348,17 @@ def resolve_image(item, idx=0):
             img_path = os.path.join(os.path.dirname(POSTS_FILE), img_path)
         if os.path.exists(img_path):
             return img_path, "ready"
-        # File path set but missing — fall through to Imagen
-    # 2. Generate from image_prompt via Imagen 3
-    if item.get("image_prompt") and GOOGLE_API_KEY:
-        gen_path = generate_image(item["image_prompt"], idx)
+        # File path set but missing on disk — fall through to Imagen
+    # 2. Generate via Imagen 3:
+    #    Use image_prompt if set, otherwise derive one from the post text
+    if GOOGLE_API_KEY:
+        prompt = item.get("image_prompt") or (
+            "Professional LinkedIn infographic for: " + item.get("text", "")[:300]
+        )
+        gen_path = generate_image(prompt, idx)
         if gen_path:
             return gen_path, "generated"
-    # 3. Nothing
+    # 3. Nothing available
     if item.get("image"):
         return item["image"], "missing"
     return None, "none"
