@@ -8,7 +8,7 @@
     "post_urn": "urn:li:share:7471589165386756097"
   },
   {
-    "text": "QuickBooks didn't fail you. You succeeded past it.\n\nThe tool that ran a 5-person startup quietly becomes the bottleneck at 50 – and the crisis at 200.",
+    "text": "QuickBooks didn't fail you. You succeeded past it.\n\nThe tool that ran a 5-person startup quietly becomes the bottleneck at 50 \u2013 and the crisis at 200.",
     "image": null,
     "alt": "",
     "posted": true,
@@ -18,6 +18,8 @@
   {
     "text": "AI is transforming how finance teams close their books.\n\n3 ways AI-powered accounting is changing the game in 2026:\n\n1. Automated reconciliation catches errors humans miss\n2. Predictive cash flow forecasting with 95% accuracy\n3. Real-time anomaly detection stops fraud before it happens\n\nThe CFOs who embrace this now will have an unfair advantage.\n\nAre you leveraging AI in your finance stack?\n\n#FinanceAI #CFO #Accounting #DigitalTransformation #UAE",
     "image_prompt": "Professional infographic showing AI transforming accounting and finance, with charts, robots analyzing data, and financial dashboards in a modern corporate setting",
-    "posted": false
+    "posted": true,
+    "posted_at": "2026-06-13 16:05:51",
+    "post_urn": "urn:li:share:7471593689543540736"
   }
 ]
