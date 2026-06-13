@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LinkedIn daily auto-poster (personal profile).
+LinkedIn daily auto-poster — personal profile + company page.
 
 Modes:
   python linkedin_poster.py auth              # run ONCE: authorize + store tokens
@@ -8,24 +8,34 @@ Modes:
   python linkedin_poster.py post              # preview, then ask before publishing
   python linkedin_poster.py post --yes        # publish immediately (for cron)
 
-Posts the next unposted item from posts.json, uploads its image if present,
-auto-refreshes the access token, and marks the item as posted.
+Posts the next unposted item from posts.json, generates an AI image via Google
+Imagen 3 (if GOOGLE_API_KEY is set and post has an image_prompt), uploads it to
+LinkedIn, auto-refreshes the access token, and marks the item as posted.
 
+Set COMPAY_ID in your .env to also post to your LinkedIn company page.
 LinkedIn's API cannot save drafts — review happens locally before publish.
 
 Setup secrets via a .env file (recommended) or environment variables:
   LI_CLIENT_ID=your_client_id
   LI_CLIENT_SECRET=your_client_secret
+  COMPANY_ID=your_company_numeric_id   # optional: enables company page posting
+  GOOGLE_API_KEY=your_google_ai_key    # optional: enables Imagen 3 image generation
 
-LinkedIn app must have BOTH products enabled (Developer Portal → Products):
+LinkedIn app must have ALL products enabled (Developer Portal → Products):
   - Share on LinkedIn
   - Sign In with LinkedIn using OpenID Connect
+  - Community Management API  ← required for company page posting
+
+Scopes used: openid profile w_member_social w_organization_social r_organization_social
+
 Requires: pip install requests
 """
 
+import base64
 import json
 import os
 import sys
+import tempfile
 import time
 import secrets
 import urllib.parse
@@ -53,9 +63,18 @@ def _load_dotenv():
 _load_dotenv()
 CLIENT_ID = os.environ.get("LI_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("LI_CLIENT_SECRET", "")
-REDIRECT_URI = "http://localhost:8765/callback"   # must match the app's Authorized redirect URL
-SCOPES = "openid profile w_member_social"
+COMPANY_ID = os.environ.get("COMPANY_ID", "")       # numeric org ID, e.g. "12345678"
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "") # Google AI Studio key for Imagen 3
+REDIRECT_URI = "http://localhost:8765/callback"  # must match app's Authorized redirect URL
+# Include org scopes so one auth covers both personal + company
+SCOPES = "openid profile w_member_social w_organization_social r_organization_social"
 LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
+
+# Google Imagen 3 endpoint
+IMAGEN_URL = (
+    "https://generativelanguage.googleapis.com/v1beta/models/"
+    "imagen-3.0-generate-002:predict"
+)
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
 POSTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posts.json")
@@ -77,7 +96,7 @@ def load_tokens():
 def save_tokens(t):
     with open(TOKENS_FILE, "w") as f:
         json.dump(t, f, indent=2)
-    os.chmod(TOKENS_FILE, 0o600)  # keep secrets readable only by you
+    os.chmod(TOKENS_FILE, 0o600)
 
 
 # ===================== one-time OAuth (mode: auth) =====================
@@ -112,7 +131,7 @@ class _CallbackHandler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def log_message(self, *args):
-        pass  # silence the server
+        pass
 
 
 def do_auth():
@@ -141,7 +160,7 @@ def do_auth():
         if _received.get("error"):
             server.server_close()
             desc = _received.get("error_description", "")
-            sys.exit("LinkedIn authorization error: %s — %s" % (_received["error"], desc))
+            sys.exit("LinkedIn authorization error: %s —#%s" % (_received["error"], desc))
         if _received.get("code"):
             break
     server.server_close()
@@ -155,7 +174,6 @@ def do_auth():
         sys.exit("State mismatch - aborting for safety.")
     code = _received["code"]
 
-    # exchange code for tokens
     r = requests.post(TOKEN_URL, data={
         "grant_type": "authorization_code",
         "code": code,
@@ -166,22 +184,26 @@ def do_auth():
     r.raise_for_status()
     tok = r.json()
 
-    # fetch the member's id (the "sub" field) to build the author URN
     me = requests.get(API + "/v2/userinfo",
                       headers={"Authorization": "Bearer " + tok["access_token"]})
     me.raise_for_status()
-    person_id = me.json()["sub"]
+    personid = me.json()["sub"]
 
     now = int(time.time())
-    save_tokens({
+    tokens = {
         "access_token": tok["access_token"],
         "expires_at": now + int(tok.get("expires_in", 5184000)),
         "refresh_token": tok.get("refresh_token", ""),
         "refresh_expires_at": now + int(tok.get("refresh_token_expires_in", 31536000)),
-        "person_urn": "urn:li:person:" + person_id,
-    })
+        "person_urn": "urn:li:person:" + personid,
+    }
+    if COMPANY_ID:
+        tokens["company_urn"] = "urn:li:organization:" + COMPANY_ID
+    save_tokens(tokens)
     print("Success. Tokens saved to", TOKENS_FILE)
-    print("Author URN:", "urn:li:person:" + person_id)
+    print("Author URN:", "urn:li:person:" + personid)
+    if COMPANY_ID:
+        print("Company URN:", "urn:li:organization:" + COMPANY_ID)
 
 
 # ===================== token refresh =====================
@@ -191,9 +213,8 @@ def valid_access_token():
         sys.exit("No tokens. Run:  python linkedin_poster.py auth")
 
     now = int(time.time())
-    # refresh if the access token expires within the next 24h
     if now < t["expires_at"] - 86400:
-        return t["access_token"], t["person_urn"]
+        return t["access_token"], t["person_urn"], t.get("company_urn", "")
 
     if now >= t.get("refresh_expires_at", 0):
         sys.exit("Refresh token expired (365-day limit). Re-run:  python linkedin_poster.py auth")
@@ -212,11 +233,57 @@ def valid_access_token():
         t["refresh_token"] = nt["refresh_token"]
         t["refresh_expires_at"] = now + int(nt.get("refresh_token_expires_in", 31536000))
     save_tokens(t)
-    return t["access_token"], t["person_urn"]
+    return t["access_token"], t["person_urn"], t.get("company_urn", "")
+
+
+# ===================== Imagen 3 generation =====================
+def generate_image(prompt, post_id=0):
+    """
+    Call Google Imagen 3 to generate an image from a text prompt.
+    Returns a local temp file path on success, or None if unavailable/failed.
+    """
+    if not GOOGLE_API_KEY:
+        return None
+    if not prompt:
+        return None
+
+    print("Generating image with Imagen 3...")
+    try:
+        resp = requests.post(
+            IMAGEN_URL,
+            headers={"Content-Type": "application/json"},
+            params={"key": GOOGLE_API_KEY},
+            json={
+                "instances": [{"prompt": prompt}],
+                "parameters": {
+                    "sampleCount": 1,
+                    "aspectRatio": "4:5",          # portrait — best for LinkedIn feed
+                    "safetyFilterLevel": "block_few",
+                    "personGeneration": "allow_adult",
+                },
+            },
+            timeout=60,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        b64 = data["predictions"][0]["bytesBase64Encoded"]
+        img_bytes = base64.b64decode(b64)
+
+        # Write to a temp file
+        tmp = tempfile.NamedTemporaryFile(
+            suffix=".jpg", prefix="li_post_%d_" % post_id, delete=False
+        )
+        tmp.write(img_bytes)
+        tmp.close()
+        print("Image generated: %s" % tmp.name)
+        return tmp.name
+    except Exception as e:
+        print("Warning: image generation failed (%s) — posting text only." % e)
+        return None
 
 
 # ===================== image upload =====================
-def upload_image(token, person_urn, path):
+def upload_image(token, owner_urn, path):
     headers = {
         "Authorization": "Bearer " + token,
         "LinkedIn-Version": LINKEDIN_VERSION,
@@ -225,7 +292,7 @@ def upload_image(token, person_urn, path):
     }
     init = requests.post(API + "/rest/images?action=initializeUpload",
                          headers=headers,
-                         json={"initializeUploadRequest": {"owner": person_urn}})
+                         json={"initializeUploadRequest": {"owner": owner_urn}})
     init.raise_for_status()
     val = init.json()["value"]
     upload_url, image_urn = val["uploadUrl"], val["image"]
@@ -235,14 +302,12 @@ def upload_image(token, person_urn, path):
                            headers={"Authorization": "Bearer " + token},
                            data=f.read())
     put.raise_for_status()
-    time.sleep(3)  # give LinkedIn a moment to process the asset
+    time.sleep(3)
     return image_urn
 
 
 # ===================== text escaping for Posts API =====================
 def escape_commentary(text):
-    # The Posts API "commentary" treats these as reserved; escaping renders
-    # them normally and prevents 422 errors. '#' is left alone so hashtags work.
     for ch in "\\(){}[]<>":
         text = text.replace(ch, "\\" + ch)
     return text
@@ -268,19 +333,35 @@ def next_queue_item(posts):
     return idx, posts[idx]
 
 
-def resolve_image(item):
-    if not item.get("image"):
-        return None, "none"
-    img_path = item["image"]
-    if not os.path.isabs(img_path):
-        img_path = os.path.join(os.path.dirname(POSTS_FILE), img_path)
-    if os.path.exists(img_path):
-        return img_path, "ready"
-    return img_path, "missing"
+def resolve_image(item, idx=0):
+    """
+    Returns (path_or_None, status) where status is:
+      "ready"   — local file found
+      "generated" — Imagen 3 produced a temp file
+      "missing"  — path in JSON but file not on disk
+      "none"    — no image at all
+    """
+    # 1. Explicit file path in posts.json
+    if item.get("image"):
+        img_path = item["image"]
+        if not os.path.isabs(img_path):
+            img_path = os.path.join(os.path.dirname(POSTS_FILE), img_path)
+        if os.path.exists(img_path):
+            return img_path, "ready"
+        # File path set but missing — fall through to Imagen
+    # 2. Generate from image_prompt via Imagen 3
+    if item.get("image_prompt") and GOOGLE_API_KEY:
+        gen_path = generate_image(item["image_prompt"], idx)
+        if gen_path:
+            return gen_path, "generated"
+    # 3. Nothing
+    if item.get("image"):
+        return item["image"], "missing"
+    return None, "none"
 
 
 def show_preview(idx, item):
-    img_path, img_status = resolve_image(item)
+    img_path, img_status = resolve_image(item, idx)
     divider = "=" * 60
     print(divider)
     print("PREVIEW — post #%d (not published yet)" % idx)
@@ -289,12 +370,15 @@ def show_preview(idx, item):
     print("-" * 60)
     if img_status == "none":
         print("Image: none (text-only post)")
-    elif img_status == "ready":
-        print("Image: %s" % img_path)
+    elif img_status in ("ready", "generated"):
+        label = "Image (generated)" if img_status == "generated" else "Image"
+        print("%s: %s" % (label, img_path))
         if item.get("alt"):
             print("Alt text: %s" % item["alt"])
+        elif item.get("image_prompt"):
+            print("Alt text: (auto from prompt)")
     else:
-        print("Image: %s (missing — will post text only)" % img_path)
+        print("Image: %s (missing — will generate or post text only)" % img_path)
     print(divider)
 
 
@@ -306,12 +390,11 @@ def confirm_post():
     return answer in ("y", "yes")
 
 
-# ===================== create the post =====================
-def publish_post(idx, item, posts):
-    token, person_urn = valid_access_token()
-
+# ===================== create a single post =====================
+def _publish_to_author(token, author_urn, item, idx=0, generated_img_path=None):
+    """Post to one author (person or organization). Returns post URN or empty string."""
     body = {
-        "author": person_urn,
+        "author": author_urn,
         "commentary": escape_commentary(item["text"]),
         "visibility": "PUBLIC",
         "distribution": {
@@ -323,10 +406,16 @@ def publish_post(idx, item, posts):
         "isReshareDisabledByAuthor": False,
     }
 
-    img_path, img_status = resolve_image(item)
-    if img_status == "ready":
-        image_urn = upload_image(token, person_urn, img_path)
-        body["content"] = {"media": {"id": image_urn, "altText": item.get("alt", "")}}
+    # Use pre-generated image path if provided (avoids calling Imagen twice)
+    if generated_img_path and os.path.exists(generated_img_path):
+        img_path, img_status = generated_img_path, "ready"
+    else:
+        img_path, img_status = resolve_image(item, idx)
+
+    alt_text = item.get("alt") or item.get("image_prompt", "")[:200] or ""
+    if img_status in ("ready", "generated"):
+        image_urn = upload_image(token, author_urn, img_path)
+        body["content"] = {"media": {"id": image_urn, "altText": alt_text}}
     elif img_status == "missing":
         print("Warning: image not found (%s) — posting text only." % img_path)
 
@@ -338,14 +427,46 @@ def publish_post(idx, item, posts):
     }
     r = requests.post(API + "/rest/posts", headers=headers, json=body)
     if r.status_code not in (200, 201):
-        sys.exit("Post failed (%s): %s" % (r.status_code, r.text))
+        print("Post failed for %s (%s): %s" % (author_urn, r.status_code, r.text))
+        return ""
+    return r.headers.get("x-restli-id") or r.headers.get("x-linkedin-id", "")
 
-    post_urn = r.headers.get("x-restli-id") or r.headers.get("x-linkedin-id", "")
+
+def publish_post(idx, item, posts):
+    token, person_urn, company_urn = valid_access_token()
+
+    # Generate image once (Imagen 3 or local file) — reuse for both posts
+    gen_path = None
+    if item.get("image_prompt") and GOOGLE_API_KEY and not item.get("image"):
+        gen_path = generate_image(item["image_prompt"], idx)
+
+    # Post to personal profile
+    personal_urn = _publish_to_author(token, person_urn, item, idx, gen_path)
+    if personal_urn:
+        print("✒ Personal profile  ₒ  %s" % personal_urn)
+
+    # Post to company page if configured
+    company_post_urn = ""
+    if company_urn:
+        company_post_urn = _publish_to_author(token, company_urn, item, idx, gen_path)
+        if company_post_urn:
+            print("✒ Company page      →  %s" % company_post_urn)
+    else:
+        print("ℹ  No COMPANY_ID set — skipped company page.")
+
+    # Clean up generated temp image
+    if gen_path and os.path.exists(gen_path):
+        try:
+            os.unlink(gen_path)
+        except OSError:
+            pass
+
     posts[idx]["posted"] = True
     posts[idx]["posted_at"] = time.strftime("%Y-%m-%d %H:%M:%S")
-    posts[idx]["post_urn"] = post_urn
+    posts[idx]["post_urn"] = personal_urn
+    if company_post_urn:
+        posts[idx]["company_post_urn"] = company_post_urn
     save_posts(posts)
-    print("Posted item %d  ->  %s" % (idx, post_urn))
 
 
 def do_preview():
@@ -366,10 +487,15 @@ def do_post(skip_confirm=False):
 
     show_preview(idx, item)
     if not skip_confirm and not confirm_post():
-        print("Cancelled — nothing was posted.")
+        print("Cancelled — post not published.")
         return
 
     publish_post(idx, item, posts)
+
+    # Warn when queue is running low
+    remaining = sum(1 for p in posts if not p.get("posted"))
+    if remaining <= 3:
+        print("\n⚠️  Only %d post(s) left in queue. Add more to posts.json soon." % remaining)
 
 
 # ===================== entry point =====================
