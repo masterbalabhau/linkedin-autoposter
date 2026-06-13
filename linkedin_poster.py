@@ -71,9 +71,7 @@ SCOPES = "openid profile w_member_social w_organization_social r_organization_so
 LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
 
 # Google Imagen 3 endpoint
-IMAGEN_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/models/"
-    "imagen-4.0-generate-001:generateImages"
+IMAGEN_MODEL = "imagen-4.0-generate-001"  # Used via google-genai SDK
 )
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
@@ -239,7 +237,7 @@ def valid_access_token():
 # ===================== Imagen 3 generation =====================
 def generate_image(prompt, post_id=0):
     """
-    Call Google Imagen 3 to generate an image from a text prompt.
+    Call Google Imagen 4 via google-genai SDK to generate an image.
     Returns a local temp file path on success, or None if unavailable/failed.
     """
     if not GOOGLE_API_KEY:
@@ -249,40 +247,27 @@ def generate_image(prompt, post_id=0):
 
     print("Generating image with Imagen 4...")
     try:
-        resp = requests.post(
-            IMAGEN_URL,
-            headers={"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY},
-            json={
-                "prompt": prompt,
-                "numberOfImages": 1,
-            },
-            timeout=60,
+        from google import genai as _genai
+        from google.genai import types as _gtypes
+        client = _genai.Client(api_key=GOOGLE_API_KEY)
+        response = client.models.generate_images(
+            model=IMAGEN_MODEL,
+            prompt=prompt,
+            config=_gtypes.GenerateImagesConfig(number_of_images=1),
         )
-        if not resp.ok:
-            print("Imagen error body:", resp.text[:500])
-        resp.raise_for_status()
-        data = resp.json()
-        b64 = data["generatedImages"][0]["image"]["imageBytes"]
-        img_bytes = base64.b64decode(b64)
+        img_bytes = response.generated_images[0].image.image_bytes
 
         # Write to a temp file
         tmp = tempfile.NamedTemporaryFile(
-            suffix=".jpg", prefix="li_post_%d_" % post_id, delete=False
+            suffix=".png", prefix="li_post_%d_" % post_id, delete=False
         )
         tmp.write(img_bytes)
         tmp.close()
-        print("Image generated: %s" % tmp.name)
+        print("Image generated:", tmp.name)
         return tmp.name
-    except requests.exceptions.HTTPError as e:
-        body = getattr(e.response, "text", "")[:300] if e.response else ""
-        print("Warning: image generation failed (%s) %s — posting text only." % (e, body))
-        return None
     except Exception as e:
         print("Warning: image generation failed (%s) — posting text only." % e)
         return None
-
-
-# ===================== image upload =====================
 def upload_image(token, owner_urn, path):
     headers = {
         "Authorization": "Bearer " + token,
