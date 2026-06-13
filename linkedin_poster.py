@@ -72,7 +72,6 @@ LINKEDIN_VERSION = "202605"   # YYYYMM. Bump to a recent month every few months.
 
 # Google Imagen 3 endpoint
 IMAGEN_MODEL = "imagen-4.0-generate-001"  # Used via google-genai SDK
-)
 
 TOKENS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokens.json")
 POSTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posts.json")
