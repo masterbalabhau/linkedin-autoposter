@@ -48,5 +48,41 @@
     "generated_at": "2026-06-13",
     "posted_at": "2026-06-15 09:44:19",
     "post_urn": "urn:li:share:7472222449368199169"
+  },
+  {
+    "topic": "Odoo vs NetSuite TCO",
+    "text": "Many UAE businesses assume high ERP costs are inevitable. We often show clients that NetSuite's TCO can significantly outweigh Odoo's, especially with ongoing licenses and specific customizations. Odoo's modularity means you only pay for what you need, leading to substantial long-term savings.\nComment \"TCO\" for a comparison guide.\n#OdooERP #NetSuite #UAETech",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-15",
+    "infographic": {
+      "layout": "stats",
+      "title": "Unlock True ERP Value in UAE",
+      "subtitle": "Comparing Odoo & NetSuite Total Cost of Ownership",
+      "cta": "Comment 'TCO Guide' to learn more.",
+      "stats": [
+        {
+          "value": "30-50%",
+          "label": "Lower TCO",
+          "caption": "Typical savings with Odoo over 3-5 years compared to proprietary systems like NetSuite for similar scope."
+        },
+        {
+          "value": "Faster Go-Live",
+          "label": "Implementation Speed",
+          "caption": "Odoo's modularity and robust community mean quicker deployments for essential functionalities."
+        },
+        {
+          "value": "Zero License Fees",
+          "label": "Core Software Cost",
+          "caption": "Odoo Community Edition is free; Enterprise has subscription, but no per-user license fees like NetSuite."
+        },
+        {
+          "value": "Flexible Scaling",
+          "label": "Adaptability",
+          "caption": "Add modules as you grow, avoiding forced upgrades or paying for unused features, common in other ERPs."
+        }
+      ]
+    }
   }
 ]
