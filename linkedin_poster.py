@@ -355,7 +355,12 @@ def save_posts(posts):
 
 
 def next_queue_item(posts):
-    idx = next((i for i, p in enumerate(posts) if not p.get("posted")), None)
+    # Publish the NEWEST unposted item (last in the list) so the post that goes
+    # out is the freshest one generated — not an older backlogged post.
+    idx = next(
+        (i for i in range(len(posts) - 1, -1, -1) if not posts[i].get("posted")),
+        None,
+    )
     if idx is None:
         return None, None
     return idx, posts[idx]

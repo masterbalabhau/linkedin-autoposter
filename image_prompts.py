@@ -47,19 +47,26 @@ def normalize_style(style):
 
 
 def pick_image_style(existing_posts):
-    """Alternate styles for variety; avoid repeating the last one."""
+    """Mostly designed infographics (~3:1), with an occasional photo for variety.
+
+    Designed infographics read far better on LinkedIn (crisp text, on-brand) than
+    generic AI photos, so they dominate. A photo appears roughly every 4th post,
+    and never two photos in a row.
+    """
     last_style = ""
     for post in reversed(existing_posts):
         style = post.get("image_style")
         if style:
             last_style = normalize_style(style)
             break
+
+    # Never two photos back-to-back.
     if last_style == "photo":
         return "infographic"
-    if last_style == "infographic":
-        return "photo"
+
+    # Otherwise infographic ~3 of every 4 posts; photo on the 4th.
     day = int(time.strftime("%j"))
-    return IMAGE_STYLES[day % len(IMAGE_STYLES)]
+    return "photo" if day % 4 == 0 else "infographic"
 
 
 def build_imagen_prompt(concept, style="photo"):
