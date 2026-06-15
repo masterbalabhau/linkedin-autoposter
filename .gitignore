@@ -2,5 +2,7 @@
 tokens.json
 venv/
 previews/
+preview.png
+preview_email.html
 __pycache__/
 *.pyc

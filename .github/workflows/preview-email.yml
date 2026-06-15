@@ -1,0 +1,48 @@
+name: Daily Post Preview Email
+
+# Emails you the post that will auto-publish, BEFORE it goes out, so you can
+# review or skip it from your phone. Runs at 02:30 UTC (08:00 IST) on the same
+# odd days the poster runs (03:30 UTC / 09:00 IST) — about an hour of buffer.
+on:
+  schedule:
+    - cron: '30 2 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31 * *'
+  workflow_dispatch:
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Chromium + emoji font for infographics
+        run: |
+          sudo apt-get update && sudo apt-get install -y fonts-noto-color-emoji
+          python -m playwright install --with-deps chromium
+
+      - name: Build preview
+        id: preview
+        run: python email_preview.py
+
+      - name: Email the preview
+        if: steps.preview.outputs.has_post == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ steps.preview.outputs.subject }}
+          to: balabhau.chandiwale@gmail.com
+          from: LinkedIn Bot <${{ secrets.MAIL_USERNAME }}>
+          html_body: file://preview_email.html
+          attachments: ${{ steps.preview.outputs.image_path }}
