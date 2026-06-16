@@ -84,5 +84,36 @@
         }
       ]
     }
+  },
+  {
+    "topic": "Python performance for Odoo",
+    "text": "Slow Odoo instances aren't just frustrating; they cost real money. Many developers overlook simple Python optimizations. We've seen projects in Dubai gain 20-30% speed by refactoring queries or using proper caching. It's about smart code, not just more code. DM 'OPTIMIZE' for a quick chat.\n#OdooDevelopment #PythonPerformance #ERPOptimization",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-16",
+    "infographic": {
+      "layout": "stats",
+      "title": "Unlock Faster Odoo",
+      "subtitle": "Practical Python performance tips for developers",
+      "cta": "DM 'OPTIMIZE' for a performance deep dive",
+      "stats": [
+        {
+          "value": "20-30%",
+          "label": "Speed Boost",
+          "caption": "Achieve significant performance gains from targeted code optimizations, reducing load times and improving user experience."
+        },
+        {
+          "value": "Zero",
+          "label": "Hardware Costs",
+          "caption": "Optimize existing code instead of expensive server upgrades. Smart code saves infrastructure spend."
+        },
+        {
+          "value": "<1 week",
+          "label": "Impact Time",
+          "caption": "Many critical Python optimizations can be implemented quickly, delivering rapid ROI for your Odoo instance."
+        }
+      ]
+    }
   }
 ]
