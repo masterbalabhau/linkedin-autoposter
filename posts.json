@@ -156,5 +156,36 @@
       ],
       "cta": "DM \"FORECAST\" for a consultation."
     }
+  },
+  {
+    "topic": "UAE PDPL and Data Residency",
+    "text": "Ignoring UAE PDPL data residency? That's a ticking time bomb for your ERP. We see many firms unknowingly risking hefty fines by hosting data offshore. Odoo, correctly implemented, keeps your data secure and compliant within the UAE. Protect your business.\n\nComment \"COMPLY\" to start.",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-19",
+    "infographic": {
+      "layout": "stats",
+      "title": "UAE PDPL & Your ERP: Don't Risk It.",
+      "subtitle": "Data Residency is Non-Negotiable for Compliance",
+      "cta": "Comment \"COMPLY\" to start",
+      "stats": [
+        {
+          "value": "AED 5M",
+          "label": "Max PDPL Fine",
+          "caption": "For serious data protection violations."
+        },
+        {
+          "value": "100%",
+          "label": "Data Residency",
+          "caption": "Mandatory for sensitive UAE data by PDPL."
+        },
+        {
+          "value": "Zero Risk",
+          "label": "Non-Compliance",
+          "caption": "Achieved with a PDPL-ready Odoo setup."
+        }
+      ]
+    }
   }
 ]
