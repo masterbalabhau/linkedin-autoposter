@@ -225,5 +225,13 @@
         }
       ]
     }
+  },
+  {
+    "topic": "Odoo as Integration Hub",
+    "text": "Fragmented systems are a silent drain on UAE business growth. Many businesses struggle with scattered data. We architect Odoo as your central hub, connecting everything from sales to inventory. This unified view streamlines operations and boosts efficiency.\nDM 'INTEGRATE'.\n#OdooERP #UAEBusiness #DigitalTransformation",
+    "image_style": "photo",
+    "image_prompt": "A confident business professional in a sleek, sunlit Dubai office, overlooking the city skyline. They stand near a whiteboard, subtly gesturing towards its center, where several converging lines are drawn, symbolizing interconnected systems. The scene conveys strategic planning and forward-thinking, emphasizing clear, organized solutions in a high-rise setting.",
+    "posted": false,
+    "generated_at": "2026-06-21"
   }
 ]
