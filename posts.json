@@ -195,7 +195,7 @@
     "text": "Ever felt restricted by standard Odoo UIs? We've all been there. Odoo's OWL framework is a game-changer for custom development. It lets us build truly unique, high-performance interfaces tailored exactly to your needs, transforming complex workflows in Dubai's dynamic market. Want to see your vision come alive? DM \"OWL\".\n#Odoo #OdooDevelopment #CustomUI",
     "image_style": "infographic",
     "image_prompt": "",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-06-20",
     "infographic": {
       "layout": "list",
@@ -224,7 +224,9 @@
           "body": "Design unique workflows and interfaces that perfectly match your specific operational needs."
         }
       ]
-    }
+    },
+    "posted_at": "2026-06-23 07:03:36",
+    "post_urn": "urn:li:share:7475081105541373952"
   },
   {
     "topic": "Odoo as Integration Hub",
