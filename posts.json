@@ -48,5 +48,230 @@
     "generated_at": "2026-06-13",
     "posted_at": "2026-06-15 09:44:19",
     "post_urn": "urn:li:share:7472222449368199169"
+  },
+  {
+    "topic": "Odoo vs NetSuite TCO",
+    "text": "Many UAE businesses assume high ERP costs are inevitable. We often show clients that NetSuite's TCO can significantly outweigh Odoo's, especially with ongoing licenses and specific customizations. Odoo's modularity means you only pay for what you need, leading to substantial long-term savings.\nComment \"TCO\" for a comparison guide.\n#OdooERP #NetSuite #UAETech",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-15",
+    "infographic": {
+      "layout": "stats",
+      "title": "Unlock True ERP Value in UAE",
+      "subtitle": "Comparing Odoo & NetSuite Total Cost of Ownership",
+      "cta": "Comment 'TCO Guide' to learn more.",
+      "stats": [
+        {
+          "value": "30-50%",
+          "label": "Lower TCO",
+          "caption": "Typical savings with Odoo over 3-5 years compared to proprietary systems like NetSuite for similar scope."
+        },
+        {
+          "value": "Faster Go-Live",
+          "label": "Implementation Speed",
+          "caption": "Odoo's modularity and robust community mean quicker deployments for essential functionalities."
+        },
+        {
+          "value": "Zero License Fees",
+          "label": "Core Software Cost",
+          "caption": "Odoo Community Edition is free; Enterprise has subscription, but no per-user license fees like NetSuite."
+        },
+        {
+          "value": "Flexible Scaling",
+          "label": "Adaptability",
+          "caption": "Add modules as you grow, avoiding forced upgrades or paying for unused features, common in other ERPs."
+        }
+      ]
+    }
+  },
+  {
+    "topic": "Python performance for Odoo",
+    "text": "Slow Odoo instances aren't just frustrating; they cost real money. Many developers overlook simple Python optimizations. We've seen projects in Dubai gain 20-30% speed by refactoring queries or using proper caching. It's about smart code, not just more code. DM 'OPTIMIZE' for a quick chat.\n#OdooDevelopment #PythonPerformance #ERPOptimization",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-16",
+    "infographic": {
+      "layout": "stats",
+      "title": "Unlock Faster Odoo",
+      "subtitle": "Practical Python performance tips for developers",
+      "cta": "DM 'OPTIMIZE' for a performance deep dive",
+      "stats": [
+        {
+          "value": "20-30%",
+          "label": "Speed Boost",
+          "caption": "Achieve significant performance gains from targeted code optimizations, reducing load times and improving user experience."
+        },
+        {
+          "value": "Zero",
+          "label": "Hardware Costs",
+          "caption": "Optimize existing code instead of expensive server upgrades. Smart code saves infrastructure spend."
+        },
+        {
+          "value": "<1 week",
+          "label": "Impact Time",
+          "caption": "Many critical Python optimizations can be implemented quickly, delivering rapid ROI for your Odoo instance."
+        }
+      ]
+    }
+  },
+  {
+    "topic": "Odoo.sh CI/CD for Enterprise",
+    "text": "Manual Odoo deployments used to give us sleepless nights. Now, Odoo.sh CI/CD pipelines automate everything. From dev to production, updates are seamless and reliable, even for complex enterprise setups. Our focus on innovation, not deployment headaches.\nDM \"AUTOMATE\" to learn more.\n#Odoo #CICD #EnterpriseERP",
+    "image_style": "photo",
+    "image_prompt": "A modern, sunlit corporate office in Dubai. A diverse group of three professionals in business attire, looking focused and calm. One individual is smiling confidently while looking at their laptop (screen is not visible), another is in a thoughtful pose, and a third is gesturing in a discussion. The background features blurred city views through large windows, conveying a sense of efficiency and innovation.",
+    "posted": true,
+    "generated_at": "2026-06-17",
+    "posted_at": "2026-06-17 08:42:02",
+    "post_urn": "urn:li:share:7472931552126234624"
+  },
+  {
+    "topic": "AI demand forecasting",
+    "text": "AED millions are lost to inaccurate inventory forecasts. We've seen it across Dubai. With Odoo's AI-powered demand forecasting, you move from guesswork to precision. Reduce carrying costs, prevent stockouts, and boost your bottom line. Stop guessing, start growing.\nDM \"FORECAST\".\n#OdooERP #AIDemandForecasting #InventoryOptimization",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-18",
+    "infographic": {
+      "layout": "stats",
+      "title": "Predict Smarter, Profit More",
+      "subtitle": "AI-Powered Demand Forecasting in Odoo",
+      "stats": [
+        {
+          "value": "30%",
+          "label": "Reduced Overstock",
+          "caption": "Minimize waste and carrying costs."
+        },
+        {
+          "value": "90%+",
+          "label": "Forecast Accuracy",
+          "caption": "Align inventory with real customer needs."
+        },
+        {
+          "value": "15%",
+          "label": "Improved Cash Flow",
+          "caption": "Free up capital tied in slow-moving stock."
+        }
+      ],
+      "cta": "DM \"FORECAST\" for a consultation."
+    }
+  },
+  {
+    "topic": "UAE PDPL and Data Residency",
+    "text": "Ignoring UAE PDPL data residency? That's a ticking time bomb for your ERP. We see many firms unknowingly risking hefty fines by hosting data offshore. Odoo, correctly implemented, keeps your data secure and compliant within the UAE. Protect your business.\n\nComment \"COMPLY\" to start.",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": true,
+    "generated_at": "2026-06-19",
+    "infographic": {
+      "layout": "stats",
+      "title": "UAE PDPL & Your ERP: Don't Risk It.",
+      "subtitle": "Data Residency is Non-Negotiable for Compliance",
+      "cta": "Comment \"COMPLY\" to start",
+      "stats": [
+        {
+          "value": "AED 5M",
+          "label": "Max PDPL Fine",
+          "caption": "For serious data protection violations."
+        },
+        {
+          "value": "100%",
+          "label": "Data Residency",
+          "caption": "Mandatory for sensitive UAE data by PDPL."
+        },
+        {
+          "value": "Zero Risk",
+          "label": "Non-Compliance",
+          "caption": "Achieved with a PDPL-ready Odoo setup."
+        }
+      ]
+    },
+    "posted_at": "2026-06-19 08:44:47",
+    "post_urn": "urn:li:share:7473657021444136961"
+  },
+  {
+    "topic": "Odoo OWL Custom UI",
+    "text": "Ever felt restricted by standard Odoo UIs? We've all been there. Odoo's OWL framework is a game-changer for custom development. It lets us build truly unique, high-performance interfaces tailored exactly to your needs, transforming complex workflows in Dubai's dynamic market. Want to see your vision come alive? DM \"OWL\".\n#Odoo #OdooDevelopment #CustomUI",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": true,
+    "generated_at": "2026-06-20",
+    "infographic": {
+      "layout": "list",
+      "title": "Unlock Custom Odoo UIs",
+      "subtitle": "Leveraging Odoo OWL for unparalleled flexibility",
+      "cta": "DM 'OWL' for a custom UI consultation",
+      "points": [
+        {
+          "emoji": "⚡️",
+          "heading": "Blazing Fast",
+          "body": "Build reactive, high-performance user interfaces that keep up with your business pace."
+        },
+        {
+          "emoji": "🛠️",
+          "heading": "Developer Friendly",
+          "body": "Modern JavaScript framework simplifies complex customizations and accelerates development cycles."
+        },
+        {
+          "emoji": "✨",
+          "heading": "Seamless Integration",
+          "body": "Fully native to Odoo, ensuring future compatibility and robust performance within your ERP."
+        },
+        {
+          "emoji": "💡",
+          "heading": "Tailored Experiences",
+          "body": "Design unique workflows and interfaces that perfectly match your specific operational needs."
+        }
+      ]
+    },
+    "posted_at": "2026-06-23 07:03:36",
+    "post_urn": "urn:li:share:7475081105541373952"
+  },
+  {
+    "topic": "Odoo as Integration Hub",
+    "text": "Fragmented systems are a silent drain on UAE business growth. Many businesses struggle with scattered data. We architect Odoo as your central hub, connecting everything from sales to inventory. This unified view streamlines operations and boosts efficiency.\nDM 'INTEGRATE'.\n#OdooERP #UAEBusiness #DigitalTransformation",
+    "image_style": "photo",
+    "image_prompt": "A confident business professional in a sleek, sunlit Dubai office, overlooking the city skyline. They stand near a whiteboard, subtly gesturing towards its center, where several converging lines are drawn, symbolizing interconnected systems. The scene conveys strategic planning and forward-thinking, emphasizing clear, organized solutions in a high-rise setting.",
+    "posted": true,
+    "generated_at": "2026-06-21",
+    "posted_at": "2026-06-21 08:15:41",
+    "post_urn": "urn:li:share:7474374469227024384"
+  },
+  {
+    "topic": "AI Financial Close",
+    "text": "Imagine closing your financial books in days, not weeks. We recently helped a Dubai-based client achieve exactly that with Odoo's accounting and AI. Manual reconciliation became automated, error rates plummeted, and their finance team shifted focus to strategy. This isn't just efficiency; it's competitive edge.\nDM \"FINCLOSE\" to learn more.\n#OdooERP #AIFinance #FinancialAutomation",
+    "image_style": "infographic",
+    "image_prompt": "",
+    "posted": false,
+    "generated_at": "2026-06-24",
+    "infographic": {
+      "layout": "stats",
+      "title": "Faster Financial Close with AI & Odoo",
+      "subtitle": "Transforming accounting for UAE businesses.",
+      "cta": "Comment \"FINCLOSE\" to learn how",
+      "stats": [
+        {
+          "value": "40%",
+          "label": "Time Saved",
+          "caption": "Reduction in monthly close cycle"
+        },
+        {
+          "value": "90%",
+          "label": "Error Reduction",
+          "caption": "Fewer manual data entry mistakes"
+        },
+        {
+          "value": "AED 0",
+          "label": "Audit Adjustments",
+          "caption": "Improved data accuracy and compliance"
+        },
+        {
+          "value": "Strategic Focus",
+          "label": "Team Impact",
+          "caption": "Finance team shifts to analysis, not reconciliation"
+        }
+      ]
+    }
   }
 ]
