@@ -19,8 +19,9 @@ CANVAS_W = 1080
 CANVAS_H = 1350
 SCALE = 2
 
-BRAND_NAME = os.environ.get("BRAND_NAME", "iNOTRO Multiservices")
-BRAND_TAGLINE = os.environ.get("BRAND_TAGLINE", "Odoo ERP & AI · Dubai, UAE")
+BRAND_NAME = os.environ.get("BRAND_NAME", "The AI Brief")
+BRAND_TAGLINE = os.environ.get("BRAND_TAGLINE", "Global AI news & analysis")
+BRAND_TAG = os.environ.get("BRAND_TAG", "AI · Daily")  # small pill in the header
 
 # Brand gradient + vibrant per-item accent palette (cycles).
 GRAD_A = "#6C2BD9"   # violet
@@ -62,11 +63,12 @@ def _header():
       <div class="brand">{brand}</div>
       <div class="brandSub">{tagline}</div>
     </div>
-    <div class="topTag">Odoo · AI</div>
+    <div class="topTag">{toptag}</div>
   </div>""".format(
         initial=_esc(BRAND_NAME[:1]),
         brand=_esc(BRAND_NAME),
         tagline=_esc(BRAND_TAGLINE),
+        toptag=_esc(BRAND_TAG),
     )
 
 
@@ -84,7 +86,7 @@ def _cta(cta):
 
 
 def _title_block(data):
-    title = data.get("title") or "Odoo ERP Insights"
+    title = data.get("title") or "AI Insights"
     subtitle = data.get("subtitle") or ""
     sub = '<div class="subtitle">%s</div>' % _esc(subtitle) if subtitle else ""
     return '<div class="title">%s</div>%s' % (_highlight_title(title), sub)

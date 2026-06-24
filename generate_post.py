@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
 """
-Daily LinkedIn post generator.
+Daily LinkedIn post generator — GLOBAL AI NEWS edition.
 
-Writes ONE new AI + Odoo post and appends it to posts.json.
-Run via GitHub Actions (generate.yml) every day at 2 AM UTC.
+Writes ONE new "what's moving in AI" post and appends it to posts.json.
+Run via GitHub Actions (generate.yml) every day at 2 AM UTC. Posting happens on
+alternate days, so each published post is a fresh take on an important AI shift.
 
 Text provider (best quality first):
   - Claude Opus 4.8  (set ANTHROPIC_API_KEY) — default when available
   - Google Gemini    (set GOOGLE_API_KEY)    — fallback
 
 Control with TEXT_PROVIDER=claude|gemini|auto (default: auto).
+
+IMPORTANT — accuracy model:
+  The text model writes from its own knowledge (no live web fetch), so it CANNOT
+  know what broke today. To protect the brand it is hard-instructed never to
+  invent dates, version numbers, benchmark figures, funding amounts, or quotes,
+  and to frame posts as sharp analysis of well-established AI developments and
+  credible near-term trajectories — not fake same-day scoops.
+
+  OPTIONAL real-news upgrade (hook, no extra deps): if a file `news_context.txt`
+  exists next to this script (or env NEWS_CONTEXT is set), its contents are
+  injected as VERIFIED headlines and the model must write about those instead of
+  picking a theme. Fill that file from an RSS/news step to get true daily news.
 """
 
 import json
@@ -56,110 +69,184 @@ TEXT_PROVIDER = (os.environ.get("TEXT_PROVIDER", "").strip().lower() or "auto")
 
 POSTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posts.json")
 
-# Topics to rotate through so posts stay fresh and varied
+# Global AI themes to rotate through so posts stay fresh and varied.
+# These are CATEGORIES, not specific scoops — the model turns one into a sharp,
+# accurate take on a well-established development or a credible near-term trend.
+# (Ignored automatically when news_context.txt / NEWS_CONTEXT supplies real news.)
 TOPIC_POOL = [
-    "UAE e-invoicing Phase 2 compliance and Odoo readiness",
-    "AI agents automating Odoo workflows (sales, procurement, HR)",
-    "Odoo 19 new features for GCC businesses",
-    "QuickBooks vs Odoo for growing Dubai SMEs",
-    "NetSuite vs Odoo total cost of ownership in UAE",
-    "UAE payroll automation and WPS compliance in Odoo",
-    "Odoo multi-company setup for GCC holding groups",
-    "Python performance tips for Odoo developers",
-    "Odoo.sh CI/CD pipelines for enterprise deployments",
-    "AI-powered demand forecasting in Odoo inventory",
-    "Data residency and PDPL compliance for UAE ERP systems",
-    "Odoo OWL frontend framework for custom UI development",
-    "Integration architecture: Odoo as hub for UAE businesses",
-    "KSA ZATCA Phase 2 e-invoicing with Odoo",
-    "Odoo Community vs Enterprise: what UAE CFOs need to know",
-    "AI-driven financial close automation in Odoo accounting",
-    "Custom Odoo module development best practices",
-    "Odoo for Dubai e-commerce: Shopify and marketplace integration",
-    "Real-time inventory visibility for UAE trading companies",
-    "Odoo HR and leave management for UAE labour law compliance",
+    "Frontier LLMs: the jump from chatbots to reasoning models",
+    "AI agents that actually do work, not just chat",
+    "Open-weight models closing the gap with closed labs",
+    "Multimodal AI: models that see, hear, and act",
+    "AI for science: protein folding, materials, and drug discovery",
+    "The compute race: GPUs, custom AI chips, and scarcity",
+    "AI coding assistants reshaping how software is built",
+    "Small, on-device models bringing AI to phones and laptops",
+    "AI safety and alignment: why labs are racing to control it",
+    "Global AI regulation: the EU AI Act and what follows",
+    "Robotics and embodied AI stepping out of the lab",
+    "Retrieval and long context: AI that remembers more",
+    "AI in healthcare: diagnosis, imaging, and triage",
+    "The economics of inference: why running AI is the new cost",
+    "Synthetic data and the looming 'data wall'",
+    "AI video and image generation going production-grade",
+    "Enterprise AI: from pilots to real deployment at scale",
+    "AI and energy: the data-center power problem",
+    "Evaluations and benchmarks: how we actually measure AI",
+    "Voice and real-time AI: the new human-computer interface",
 ]
 
-SYSTEM_PROMPT = """You are an expert LinkedIn content writer for iNOTRO Multiservices,
-a boutique Odoo ERP and AI implementation firm based in Dubai, UAE.
+SYSTEM_PROMPT = """# ROLE
+You write the daily AI brief for a sharp, globally-followed LinkedIn page. Voice:
+a senior AI insider who explains the field to smart, busy people — engineers,
+founders, and executives. Confident, curious, and clear. Never hype, never salesy,
+never a Twitter-thread guru. Think "trusted analyst who actually ships," not influencer.
 
-Write SHORT, scroll-stopping posts in a mini-story style:
-- HARD LIMIT: 50 words MAXIMUM for the whole post, NOT counting the hashtag line. Shorter is better. Never exceed 50 words.
-- Open with a sharp one-line hook — a surprising fact, a relatable pain point, or a bold statement.
-- Tell ONE tiny story or insight in 2–4 punchy sentences. One idea only. NO bullet lists, NO arrows, NO jargon walls.
-- End with a short, soft CTA (e.g. 'Comment "AUDIT".' or 'DM "SCALE".').
-- Then EXACTLY 3 relevant hashtags on their own final line.
-- First person ("we" for the team, "I" for personal insight), confident and human — a senior Odoo architect, never salesy.
-- Specific to UAE/GCC context where it fits. Never mention competitor names negatively.
+# WHAT TO WRITE ABOUT
+ONE genuinely interesting development, capability shift, or credible near-term
+trajectory in AI — global in scope, never tied to one country or region. Good
+angles: a real capability leap and why it matters, a counter-intuitive truth most
+people miss, a "here's what's actually changing" reframe, or a grounded look at
+where a trend is heading. Make the reader feel they understand something better
+than they did 15 seconds ago.
 
-Also provide an image for the post. Strongly PREFER image_style = "infographic"
-(a crisp, designed graphic). Only use image_style = "photo" occasionally.
+# ACCURACY — NON-NEGOTIABLE (this auto-posts to a real brand)
+You write from your own training knowledge with NO live news feed, so you CANNOT
+know what happened today. Therefore:
+- NEVER invent or imply a same-day scoop. No "Breaking", no "today", no "just
+  announced", no specific calendar dates.
+- NEVER fabricate specifics: do NOT state exact version numbers, benchmark scores,
+  parameter counts, funding amounts, valuations, user counts, percentages, or
+  direct quotes unless they are genuinely well-established, widely-known facts.
+- Prefer durable truths and directional framing ("reasoning models are pulling
+  ahead", "agents are moving from demos to production", "inference cost is the new
+  bottleneck") over precise figures you can't verify.
+- When pointing at the future, hedge honestly: "the trajectory suggests",
+  "signals point to", "expect", "is likely to" — never assert the unknowable.
+- If you're not sure a fact is solid, leave it out. A sharp, true idea beats a
+  specific, fragile claim. When in doubt, write insight, not statistics.
 
-If image_style = "photo":
-  Provide image_prompt: a SHORT visual concept (30-50 words) describing a REAL
-  photographic SCENE for this Odoo ERP topic — people, objects, setting, lighting,
-  mood, like a professional photographer. Do NOT mention text, words, labels, logos,
-  dashboards, or UI screens. Use a realistic Dubai/GCC business setting.
+# IF VERIFIED NEWS IS PROVIDED
+If the user message includes a "VERIFIED HEADLINES" block, treat it as today's real,
+fact-checked news: write your post strictly about ONE of those items, you MAY use the
+concrete facts it contains, and ignore the suggested theme.
 
-If image_style = "infographic":
-  Provide an "infographic" object rendered into a DESIGNED slide with real, crisp
-  text (NOT an AI image). Choose ONE layout that best fits the topic and fill the
-  matching fields. ALWAYS include: layout, title, subtitle, cta.
-    layout   — "stats" | "comparison" | "list"  (PREFER "stats" when the topic has
-               any numbers, percentages, savings, time, or growth — it is most eye-catching)
-    title    — the headline
-    subtitle — a supporting line
-    cta      — call to action (e.g. 'Comment "AUDIT" to start')
+# FORMAT (strict)
+- HARD LIMIT: 60 words MAXIMUM for the post body (NOT counting the hashtag line).
+  Shorter and punchier is better.
+- Line 1: a scroll-stopping hook — a surprising fact, a sharp claim, or a vivid
+  one-liner. No "Did you know" clichés.
+- Then ONE idea in 2–4 tight sentences. No bullet lists, no arrows, no jargon walls,
+  no em-dash soup. Plain, confident English a non-expert still follows.
+- End with a light engagement nudge that invites a real reply (e.g. a genuine
+  question, or 'What would you build with this?'). Keep it natural, not gimmicky.
+- Then EXACTLY 3 relevant hashtags on their OWN final line (e.g. #AI #MachineLearning #Tech).
+- First person ("I"/"we"), human, opinionated but fair. No emojis in the body text.
 
-  For layout = "stats" (the hero style — use most often):
-    stats — array of 2-4 items, each: {value, label, caption}
-            value   = a bold number/percentage/figure, e.g. "40%", "3x", "AED 0", "<2 wks"
-            label   = a label for the figure
-            caption = context for the figure
-    Use realistic, defensible figures; never invent precise fake statistics —
-    use directional ranges or well-known industry figures.
+# IMAGE — always ONE original, photorealistic AI image (no text, no infographics)
+Every post gets a single striking, cinematic photo that visually captures THIS
+post's idea. Set image_style = "photo" ALWAYS, and ALWAYS provide image_prompt.
 
-  For layout = "comparison":
-    left  — {label, tone:"bad",  items:[strings]}   e.g. "Without Odoo"
-    right — {label, tone:"good", items:[strings]}   e.g. "With Odoo"
+image_prompt rules:
+- 30–60 words describing ONE real, photographable SCENE a world-class photographer
+  could shoot — concrete and visual. Name the SUBJECT, the ACTION, the SETTING, the
+  LIGHTING, the LENS/MOOD, and the COLOR. One hero subject, not a busy collage.
+- Translate the abstract AI idea into a bold, unexpected, metaphor-rich VISUAL.
+  Avoid the tired "person smiling at a laptop" — make it cinematic and original.
+- It must clearly relate to the post's topic at a glance.
+- NEVER mention text, words, letters, numbers, labels, logos, dashboards, charts,
+  or UI screens — AI-rendered text looks broken and the renderer adds none.
 
-  For layout = "list":
-    points — array of 3-4 items, each: {emoji, heading, body}
-             emoji=one relevant emoji, heading=a short heading, body=a sentence
-
-  Write the infographic text as fully and informatively as the topic needs — do NOT
-  cut it short. Keep it specific, accurate, and jargon-light.
+Good image_prompt examples (match this vividness, vary the idea):
+  • Agents doing work → "A human hand and a sleek matte-black robotic hand together
+    assembling a glowing circuit board on a dark workbench, blue sparks suspended in
+    the air, dramatic side light, shallow focus."
+  • AI for science → "A lone researcher silhouetted in a darkened lab, studying a
+    luminous floating 3D protein structure made of light, cool blue glow on her face,
+    cinematic haze."
+  • The compute race → "Extreme macro of an advanced AI processor, circuitry pulsing
+    electric blue, a single warm rim light, fine dust particles drifting, deep black
+    background."
+  • On-device AI → "A smartphone on a wooden desk projecting a small hologram of a
+    brain woven from light, soft golden window light behind, intimate and quiet."
+  • AI safety → "One engineer dwarfed by a vast dark data hall, a single illuminated
+    control console casting cold blue light across endless server racks."
 """
 
+_STOPWORDS = {
+    "ai", "the", "a", "an", "and", "of", "to", "for", "in", "on", "with",
+    "from", "that", "not", "just", "new", "how", "why", "what", "is", "are",
+}
+
+
+def _topic_signature(topic):
+    """Most distinctive word in a topic, used for light de-duplication."""
+    for word in topic.lower().replace(":", " ").replace(",", " ").split():
+        w = word.strip("-")
+        if w and w not in _STOPWORDS and len(w) > 3:
+            return w
+    return topic.split()[0].lower()
+
+
 def pick_topic(existing_posts):
-    """Pick a topic not recently used."""
+    """Pick a theme whose distinctive keyword wasn't used in recent posts."""
     recent_texts = " ".join(
-        p.get("text", "") for p in existing_posts[-20:]
+        (p.get("text", "") + " " + p.get("topic", "")) for p in existing_posts[-12:]
     ).lower()
     for topic in TOPIC_POOL:
-        # Use topic if key words not in recent 20 posts
-        key = topic.split()[0].lower()
-        if key not in recent_texts:
+        if _topic_signature(topic) not in recent_texts:
             return topic
-    # Fallback: rotate by date
+    # Fallback: rotate deterministically by date so we still vary.
     day_of_year = int(time.strftime("%j"))
     return TOPIC_POOL[day_of_year % len(TOPIC_POOL)]
 
 
+def _load_news_context():
+    """Optional real-news hook. Returns verified-headlines text, or ''.
+
+    Lets you upgrade to true daily news WITHOUT changing this script: have an
+    upstream step (RSS reader, news API, etc.) write recent, fact-checked AI
+    headlines to env NEWS_CONTEXT or to a `news_context.txt` file beside this
+    script. When present, the model writes about those instead of a theme.
+    """
+    ctx = os.environ.get("NEWS_CONTEXT", "").strip()
+    if ctx:
+        return ctx
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "news_context.txt")
+    if os.path.exists(path):
+        try:
+            with open(path, encoding="utf-8") as f:
+                return f.read().strip()
+        except Exception:
+            return ""
+    return ""
+
+
 def _build_user_prompt(topic, suggested_style):
+    news = _load_news_context()
+    if news:
+        focus = (
+            "VERIFIED HEADLINES (real, fact-checked — write about ONE of these and "
+            "you MAY use their concrete facts):\n%s\n\n"
+            "Pick the single most interesting item above and write the post about it."
+            % news
+        )
+    else:
+        focus = (
+            "Write about this AI theme (turn it into one sharp, accurate insight — "
+            "do NOT fabricate specific figures, dates, or quotes): %s" % topic
+        )
+
     return (
-        "Write a SHORT LinkedIn post (50 words MAX, excluding hashtags) for "
-        "iNOTRO Multiservices about: %s\n\n"
+        "%s\n\n"
         "Return ONLY valid JSON with these keys:\n"
-        "  text         — the full LinkedIn post text (string)\n"
-        "  image_style  — \"photo\" or \"infographic\" (string)\n"
+        "  text         — the full LinkedIn post text incl. the 3-hashtag final line (string)\n"
+        "  image_style  — always \"photo\" (string)\n"
         "  topic        — short topic label (string, 3-6 words)\n"
-        "  image_prompt — REQUIRED only if image_style is \"photo\": real scene, no text/UI\n"
-        "  infographic  — REQUIRED only if image_style is \"infographic\": object with\n"
-        "                 keys title, subtitle, points (3-4 of {emoji, heading, body}), cta\n\n"
-        "Suggested image_style for this post: %s\n\n"
+        "  image_prompt — REQUIRED: one vivid, cinematic, photorealistic SCENE for this\n"
+        "                 post (30-60 words). No text, words, logos, charts, or UI screens.\n\n"
         "No markdown, no code fences, just raw JSON."
-    ) % (topic, suggested_style)
+    ) % focus
 
 
 def _extract_json(raw):
@@ -303,21 +390,27 @@ def main():
         posts = []
 
     topic = pick_topic(posts)
-    image_style = pick_image_style(posts)
     print("Generating post about: %s" % topic)
 
-    result = generate_post(topic, suggested_style=image_style)
+    result = generate_post(topic, suggested_style="photo")
+
+    image_prompt = (result.get("image_prompt") or "").strip()
+    if not image_prompt:
+        # Safety net: never ship a post without an image concept.
+        image_prompt = (
+            "A striking cinematic photograph that captures the idea of %s — a single "
+            "hero subject, dramatic lighting, electric blue and violet glow, shallow "
+            "depth of field. No text or screens." % result.get("topic", topic)
+        )
 
     new_post = {
         "topic": result.get("topic", topic),
         "text": result["text"],
-        "image_style": result.get("image_style", image_style),
-        "image_prompt": result.get("image_prompt", ""),
+        "image_style": "photo",           # this edition is photo-only
+        "image_prompt": image_prompt,
         "posted": False,
         "generated_at": time.strftime("%Y-%m-%d"),
     }
-    if result.get("infographic"):
-        new_post["infographic"] = result["infographic"]
 
     posts.append(new_post)
 

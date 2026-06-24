@@ -1,13 +1,15 @@
 """Shared image style rules for LinkedIn post visuals (Imagen 4 Ultra)."""
 
-import time
+import os
 
-# "photo" is preferred — photorealistic scenes look far more professional on
-# LinkedIn and avoid the gibberish-text problem of AI infographics.
+# This edition posts ONE photorealistic AI image per post (no text/infographics).
 IMAGE_STYLES = ("photo", "infographic")
 
+# Portrait 3:4 fills more of the LinkedIn feed and reads like a magazine cover.
+# Override with IMAGE_ASPECT (Imagen supports 1:1, 3:4, 4:3, 9:16, 16:9).
+_PHOTO_ASPECT = os.environ.get("IMAGE_ASPECT", "").strip() or "3:4"
 STYLE_ASPECT_RATIO = {
-    "photo": "4:3",
+    "photo": _PHOTO_ASPECT,
     "infographic": "4:3",
 }
 
@@ -20,23 +22,30 @@ STYLE_ALIASES = {
 }
 
 PHOTO_SUFFIX = (
-    "Ultra-realistic, high-resolution professional photograph for a Dubai/GCC "
-    "Odoo ERP and AI consultancy brand. Cinematic natural lighting, shallow depth "
-    "of field, premium corporate magazine quality, authentic modern Middle East "
-    "business setting, real people and real objects. "
-    "Absolutely NO text, NO words, NO logos, NO charts, NO UI screens, NO captions."
+    "Hyperrealistic editorial photograph, shot for the cover of WIRED or MIT "
+    "Technology Review. One strong hero subject, bold cinematic composition with "
+    "negative space, dramatic volumetric lighting and gentle lens flare, shallow "
+    "depth of field on an 85mm prime lens, razor-sharp focus, ultra-fine photoreal "
+    "texture and micro-detail, high dynamic range, subtle atmospheric haze and fine "
+    "dust in the light. Sophisticated futuristic color grade: deep blacks, electric "
+    "blue and violet glow with warm amber accents. Awe-inspiring, intelligent, "
+    "premium mood — emphatically NOT generic stock photography. "
+    "Absolutely NO text, NO words, NO letters, NO numbers, NO logos, NO charts, "
+    "NO graphs, NO UI screens, NO captions, NO watermark."
 )
 
 INFOGRAPHIC_SUFFIX = (
-    "Clean premium flat-vector concept illustration for an Odoo ERP consultancy. "
-    "Simple icon shapes, smooth gradients, generous whitespace, balanced composition. "
-    "Palette: Odoo purple (#714B67), teal, navy, white. "
+    "Clean premium flat-vector concept illustration for a global AI/technology "
+    "publication. Simple icon shapes (neural nets, chips, robots, nodes), smooth "
+    "gradients, generous whitespace, balanced composition. "
+    "Palette: electric violet (#6C2BD9), teal (#0F9D8C), deep navy, white. "
     "Absolutely NO readable text, NO letters, NO numbers, NO fake dashboards, NO UI."
 )
 
 NEGATIVE_HINT = (
-    "Avoid: garbled text, fake words, watermark, distorted faces, extra fingers, "
-    "cluttered layout, low resolution, generic stock-photo feel."
+    "Avoid: garbled text, fake words, watermark, distorted faces, extra or fused "
+    "fingers, malformed hands, cluttered composition, flat or dull lighting, low "
+    "resolution, oversaturation, plastic CGI look, cheesy corporate stock-photo feel."
 )
 
 
@@ -47,26 +56,8 @@ def normalize_style(style):
 
 
 def pick_image_style(existing_posts):
-    """Mostly designed infographics (~3:1), with an occasional photo for variety.
-
-    Designed infographics read far better on LinkedIn (crisp text, on-brand) than
-    generic AI photos, so they dominate. A photo appears roughly every 4th post,
-    and never two photos in a row.
-    """
-    last_style = ""
-    for post in reversed(existing_posts):
-        style = post.get("image_style")
-        if style:
-            last_style = normalize_style(style)
-            break
-
-    # Never two photos back-to-back.
-    if last_style == "photo":
-        return "infographic"
-
-    # Otherwise infographic ~3 of every 4 posts; photo on the 4th.
-    day = int(time.strftime("%j"))
-    return "photo" if day % 4 == 0 else "infographic"
+    """Every post is a pure photorealistic AI image (no text/infographics)."""
+    return "photo"
 
 
 def build_imagen_prompt(concept, style="photo"):

@@ -411,7 +411,9 @@ def resolve_image(item, idx=0):
     # 2b. Photorealistic image via Imagen
     if GOOGLE_API_KEY:
         prompt = item.get("image_prompt") or (
-            "A modern Dubai business team collaborating on ERP and AI projects"
+            "A striking cinematic photograph evoking the frontier of artificial "
+            "intelligence — glowing data center, dramatic blue-violet light, one "
+            "hero subject, shallow depth of field"
         )
         photo_style = "photo" if style == "infographic" else style
         gen_path = generate_image(prompt, idx, style=photo_style)
