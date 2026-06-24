@@ -67,6 +67,17 @@ ANTHROPIC_VERSION = "2023-06-01"
 
 TEXT_PROVIDER = (os.environ.get("TEXT_PROVIDER", "").strip().lower() or "auto")
 
+# Transient API errors worth retrying (overload/rate-limit/gateway), with how many
+# attempts and exponential backoff. Protects the daily run from brief provider spikes
+# like Gemini's "503 high demand" instead of failing the whole workflow.
+_RETRY_STATUSES = (429, 500, 502, 503, 504, 529)
+_MAX_ATTEMPTS = 5
+
+
+def _retry_wait(attempt):
+    """Exponential backoff: 5, 10, 20, 40, 60s (capped)."""
+    return min(60, 5 * (2 ** attempt))
+
 POSTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posts.json")
 
 # Global AI themes to rotate through so posts stay fresh and varied.
@@ -302,13 +313,14 @@ def generate_with_claude(topic, suggested_style):
         "content-type": "application/json",
     }
     resp = None
-    for attempt in range(3):
+    for attempt in range(_MAX_ATTEMPTS):
         resp = requests.post(ANTHROPIC_URL, headers=headers, json=payload, timeout=90)
-        if resp.status_code not in (429, 500, 503, 529):
+        if resp.status_code not in _RETRY_STATUSES:
             break
-        if attempt < 2:
-            wait = 5 * (attempt + 1)
-            print("Claude busy (%s), retrying in %ss..." % (resp.status_code, wait))
+        if attempt < _MAX_ATTEMPTS - 1:
+            wait = _retry_wait(attempt)
+            print("Claude busy (%s), retry %d/%d in %ss..."
+                  % (resp.status_code, attempt + 1, _MAX_ATTEMPTS - 1, wait))
             time.sleep(wait)
     if not resp.ok:
         try:
@@ -343,18 +355,19 @@ def generate_with_gemini(topic, suggested_style):
         },
     }
     resp = None
-    for attempt in range(3):
+    for attempt in range(_MAX_ATTEMPTS):
         resp = requests.post(
             GEMINI_URL,
             headers={"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY},
             json=payload,
             timeout=60,
         )
-        if resp.status_code not in (429, 503):
+        if resp.status_code not in _RETRY_STATUSES:
             break
-        if attempt < 2:
-            wait = 5 * (attempt + 1)
-            print("Gemini busy (%s), retrying in %ss..." % (resp.status_code, wait))
+        if attempt < _MAX_ATTEMPTS - 1:
+            wait = _retry_wait(attempt)
+            print("Gemini busy (%s), retry %d/%d in %ss..."
+                  % (resp.status_code, attempt + 1, _MAX_ATTEMPTS - 1, wait))
             time.sleep(wait)
     if not resp.ok:
         try:
