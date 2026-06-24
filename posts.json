@@ -273,5 +273,13 @@
         }
       ]
     }
+  },
+  {
+    "topic": "LLMs: from chatbots to reasoning",
+    "text": "The biggest leap in AI isn't just better chat, it's deeper thought. Frontier LLMs are moving beyond pattern matching to structured reasoning, tackling complex problems through internal planning and logical steps. This capability shift unlocks potential far beyond simple conversation. How will this redefine your approach to complex challenges?\n#AI #LLMs #Reasoning",
+    "image_style": "photo",
+    "image_prompt": "A shimmering, complex three-dimensional neural network rendered as light, intricately connecting abstract glowing nodes within a dark, vast digital space. Hints of a structured, logical pathway forming through the luminous web. Dramatic, contemplative mood with deep blues and purples.",
+    "posted": false,
+    "generated_at": "2026-06-24"
   }
 ]
