@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -32,8 +32,10 @@
     "text": "We're entering an era where AI doesn't just read text; it genuinely perceives the world. Multimodal models integrating vision and audio are unlocking a deeper, more contextual understanding of environments and interactions. This shift means AI can interpret complex scenarios, bridging perception with action to perform tasks requiring nuanced awareness. What kind of applications will truly benefit from AI that sees, hears, and acts?\n#AI #MultimodalAI #CognitiveAI",
     "image_style": "photo",
     "image_prompt": "A sleek, glowing abstract neural network core, suspended in a dark, futuristic laboratory. Delicate tendrils of light emanate, connecting to holographic representations of a human eye, an ear, and a robotic hand, all subtly pulsing. Dynamic blue and purple light, shallow depth of field.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-06-27",
-    "image": "post_images/2026-06-27-multimodal-ai-capabilities.png"
+    "image": "post_images/2026-06-27-multimodal-ai-capabilities.png",
+    "posted_at": "2026-06-27 06:42:20",
+    "post_urn": "urn:li:share:7476525306628128768"
   }
 ]
