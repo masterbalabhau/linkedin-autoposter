@@ -26,5 +26,13 @@
     "image_prompt": "A powerful, luminous AI brain made of interconnected light threads rapidly expanding and self-assembling in a vast, dark digital space. Surrounding it are countless smaller, diverse nodes also contributing and glowing brightly, symbolizing decentralized innovation. Dramatic, cold blue and white light, deep perspective.",
     "posted": false,
     "generated_at": "2026-06-26"
+  },
+  {
+    "topic": "Multimodal AI capabilities",
+    "text": "We're entering an era where AI doesn't just read text; it genuinely perceives the world. Multimodal models integrating vision and audio are unlocking a deeper, more contextual understanding of environments and interactions. This shift means AI can interpret complex scenarios, bridging perception with action to perform tasks requiring nuanced awareness. What kind of applications will truly benefit from AI that sees, hears, and acts?\n#AI #MultimodalAI #CognitiveAI",
+    "image_style": "photo",
+    "image_prompt": "A sleek, glowing abstract neural network core, suspended in a dark, futuristic laboratory. Delicate tendrils of light emanate, connecting to holographic representations of a human eye, an ear, and a robotic hand, all subtly pulsing. Dynamic blue and purple light, shallow depth of field.",
+    "posted": false,
+    "generated_at": "2026-06-27"
   }
 ]
