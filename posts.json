@@ -45,5 +45,13 @@
     "image_prompt": "A lone scientist observes a vibrant, luminous 3D projection of a complex protein structure, intricately detailed, floating mid-air in a darkened, high-tech laboratory. Cool blue and green light emanates from the projection, reflecting on the scientist's focused face. Shallow depth of field, cinematic.",
     "posted": false,
     "generated_at": "2026-06-28"
+  },
+  {
+    "topic": "AI compute race",
+    "text": "Forget software; the biggest battle in AI is happening at the silicon level. The race for compute is intensifying, with specialized AI accelerators now competing fiercely with general-purpose GPUs. This shift highlights a future where custom hardware design will increasingly dictate AI capability and create significant supply chain challenges. What implications does this have for your AI strategy?\n#AI #Compute #Hardware",
+    "image_style": "photo",
+    "image_prompt": "Extreme macro view of a cutting-edge AI processor, its intricate circuitry glowing with electric blue and amber light, resembling a futuristic city at night. Fine dust particles drift in the dramatic side lighting, set against a deep black background, conveying immense power.",
+    "posted": false,
+    "generated_at": "2026-06-29"
   }
 ]
