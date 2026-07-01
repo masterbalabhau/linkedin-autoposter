@@ -71,6 +71,7 @@
     "image_style": "photo",
     "image_prompt": "A human hand gently holds a sleek, dark smartphone in a soft focus, dimly lit living room. From the phone's screen, a luminous, intricate web of light, resembling a neural network, gently projects into the air, casting a subtle blue glow on the hand. Warm ambient light from a window in the background.",
     "posted": false,
-    "generated_at": "2026-07-01"
+    "generated_at": "2026-07-01",
+    "image": "post_images/2026-07-01-on-device-ai-models.png"
   }
 ]
