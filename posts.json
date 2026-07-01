@@ -64,5 +64,13 @@
     "image_prompt": "A pair of human hands, slightly out of focus, reaching over a glowing, ethereal network of code projected onto a sleek, dark desk. The code forms intricate, self-organizing structures of light, suggesting a collaborative intelligence, with soft blue and green hues and a clean, modern aesthetic.",
     "posted": false,
     "generated_at": "2026-06-30"
+  },
+  {
+    "topic": "On-device AI models",
+    "text": "The future of AI isn't just in massive data centers.\nIncreasingly capable, smaller models are moving directly onto our phones and laptops. This shift enables instant responses, enhanced privacy, and offline functionality, fundamentally changing how we interact with intelligent systems daily.\nWhat new applications do you see emerging from this localized intelligence?\n#OnDeviceAI #EdgeAI #AI",
+    "image_style": "photo",
+    "image_prompt": "A human hand gently holds a sleek, dark smartphone in a soft focus, dimly lit living room. From the phone's screen, a luminous, intricate web of light, resembling a neural network, gently projects into the air, casting a subtle blue glow on the hand. Warm ambient light from a window in the background.",
+    "posted": false,
+    "generated_at": "2026-07-01"
   }
 ]
