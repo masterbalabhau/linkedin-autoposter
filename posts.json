@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -75,5 +75,13 @@
     "image": "post_images/2026-07-01-on-device-ai-models.png",
     "posted_at": "2026-07-01 07:54:43",
     "post_urn": "urn:li:share:7477993073021538305"
+  },
+  {
+    "topic": "AI Safety and Alignment",
+    "text": "The hardest problem in AI isn't building intelligence; it's steering it. As models scale, emergent behaviors demand rigorous alignment strategies. Labs race to develop robust control mechanisms, ensuring these powerful systems serve human intent and prevent unintended outcomes. How do you see this challenge evolving?\n\n#AISafety #AIAgnment #FutureofAI",
+    "image_style": "photo",
+    "image_prompt": "A focused engineer's hands delicately adjusting a holographic projection of a complex, glowing neural network, suspended in a dark, high-tech control room. Soft, analytical blue light illuminates the hands and the intricate structure, conveying precision and deep concentration.",
+    "posted": false,
+    "generated_at": "2026-07-02"
   }
 ]
