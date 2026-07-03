@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -89,8 +89,10 @@
     "text": "The EU AI Act isn't just European law; it's a blueprint for global AI governance. This landmark legislation sets a risk-based standard that many other nations and blocs are closely observing. Expect its principles to ripple worldwide, influencing how AI is developed and deployed everywhere, from safety to transparency. How will this evolving regulatory landscape impact your strategy?\n#AI #Regulation #GlobalImpact",
     "image_style": "photo",
     "image_prompt": "An intricate, transparent architectural model of a complex global framework, glowing with internal light, set against a backdrop of a blurred, diverse cityscape at twilight. Focus on the delicate balance and interconnectedness of the structure, with soft, diffused lighting and a sense of scale.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-03",
-    "image": "post_images/2026-07-03-global-ai-regulation.png"
+    "image": "post_images/2026-07-03-global-ai-regulation.png",
+    "posted_at": "2026-07-03 06:47:34",
+    "post_urn": "urn:li:share:7478700949558177792"
   }
 ]
