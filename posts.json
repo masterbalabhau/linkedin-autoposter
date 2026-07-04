@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -94,5 +94,13 @@
     "image": "post_images/2026-07-03-global-ai-regulation.png",
     "posted_at": "2026-07-03 06:47:34",
     "post_urn": "urn:li:share:7478700949558177792"
+  },
+  {
+    "topic": "Robotics out of the lab",
+    "text": "The lab is becoming too small for advanced AI. Embodied AI models are rapidly moving into real-world environments, learning from physical interaction and diverse data streams. This shift from controlled simulations to practical deployment is accelerating capabilities, making robots more adaptable and useful across logistics and specialized services. What overlooked real-world problem could embodied AI solve next?\n\n#AI #Robotics #EmbodiedAI",
+    "image_style": "photo",
+    "image_prompt": "A sleek, advanced humanoid robot's hand delicately places a small, glowing component onto a complex assembly within a modern industrial workshop. Focused task lighting illuminates the precise action, highlighting intricate mechanics. A slightly low angle emphasizes the robot's capability, conveying a sense of quiet, intelligent work in progress. Cool blues and metallic greys dominate.",
+    "posted": false,
+    "generated_at": "2026-07-04"
   }
 ]
