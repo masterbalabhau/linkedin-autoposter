@@ -109,6 +109,7 @@
     "image_style": "photo",
     "image_prompt": "A solitary figure in a vast, ethereal digital library, reaching out to touch shimmering streams of data flowing like light from glowing server racks that extend into the horizon. Cool blue and purple ambient light illuminates the scene, suggesting profound knowledge access and discovery. Cinematic, wide shot.",
     "posted": false,
-    "generated_at": "2026-07-05"
+    "generated_at": "2026-07-05",
+    "image": "post_images/2026-07-05-ai-memory-and-context.png"
   }
 ]
