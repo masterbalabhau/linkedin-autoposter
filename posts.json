@@ -102,5 +102,13 @@
     "image_prompt": "A sleek, advanced humanoid robot's hand delicately places a small, glowing component onto a complex assembly within a modern industrial workshop. Focused task lighting illuminates the precise action, highlighting intricate mechanics. A slightly low angle emphasizes the robot's capability, conveying a sense of quiet, intelligent work in progress. Cool blues and metallic greys dominate.",
     "posted": false,
     "generated_at": "2026-07-04"
+  },
+  {
+    "topic": "AI memory and context",
+    "text": "AI's ability to \"remember\" is rapidly expanding, fundamentally changing its utility. Long context windows and advanced retrieval techniques now allow models to access and synthesize vast, specific information. This reduces hallucinations and unlocks far more reliable, context-rich applications. What new products will this deeper understanding enable?\n#AI #LLMs #ContextualAI",
+    "image_style": "photo",
+    "image_prompt": "A solitary figure in a vast, ethereal digital library, reaching out to touch shimmering streams of data flowing like light from glowing server racks that extend into the horizon. Cool blue and purple ambient light illuminates the scene, suggesting profound knowledge access and discovery. Cinematic, wide shot.",
+    "posted": false,
+    "generated_at": "2026-07-05"
   }
 ]
