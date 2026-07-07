@@ -121,5 +121,13 @@
     "image_prompt": "A close-up of a doctor's hand hovering over a luminous, swirling holographic projection of a complex medical scan, revealing intricate patterns in light. Soft, focused blue light illuminates the subtle details against a muted, professional background, evoking precision and discovery.",
     "posted": false,
     "generated_at": "2026-07-06"
+  },
+  {
+    "topic": "AI inference economics",
+    "text": "Training AI models was expensive; running them at scale is now the silent budget killer. As AI moves from labs to production, the real economic challenge isn't just training but the continuous, energy-intensive inference. Every query, every interaction, demands dedicated compute, turning operational costs into a critical bottleneck for scaling. How are you factoring inference economics into your AI product roadmaps?\n#AI #Inference #TechEconomics",
+    "image_style": "photo",
+    "image_prompt": "A long exposure shot of a complex network of luminous, interconnected fiber optic cables or energy conduits, stretching into a hazy, infinite horizon. Cool blue and green light pulses through the lines, suggesting constant data flow and energy consumption. Deep shadows, futuristic and slightly industrial feel.",
+    "posted": false,
+    "generated_at": "2026-07-07"
   }
 ]
