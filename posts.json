@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -146,8 +146,10 @@
     "text": "The quiet revolution in AI isn't happening behind closed doors. Open-weight models are rapidly closing the capability gap with proprietary systems. This accelerated progress, fueled by broad community contributions, means more accessible, customizable, and often more specialized AI for a growing range of applications. It's democratizing advanced capabilities. What new frontiers does this open up for builders?\n#AI #OpenSourceAI #Innovation",
     "image_style": "photo",
     "image_prompt": "A vast, intricate network of glowing, interconnected light streams and nodes, representing collaborative intelligence, rising organically from a dark, digital landscape. It reaches towards a towering, monolithic server structure in the distance, silhouetted against a rising sun, suggesting convergence and shared progress. Soft, ethereal light.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-09",
-    "image": "post_images/2026-07-09-open-weight-ai-convergence.png"
+    "image": "post_images/2026-07-09-open-weight-ai-convergence.png",
+    "posted_at": "2026-07-09 07:00:51",
+    "post_urn": "urn:li:share:7480878620794806272"
   }
 ]
