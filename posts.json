@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -151,5 +151,13 @@
     "image": "post_images/2026-07-09-open-weight-ai-convergence.png",
     "posted_at": "2026-07-09 07:00:51",
     "post_urn": "urn:li:share:7480878620794806272"
+  },
+  {
+    "topic": "Multimodal AI",
+    "text": "AI's true understanding is now unlocking across multiple senses. Multimodal models, integrating vision, audio, and language, are moving beyond simple pattern matching. They process complex real-world context, interpret nuanced inputs, and respond with more grounded, relevant actions. This shift builds toward agents that genuinely perceive and interact with our world. What problems do you see this capability solving first?\n#AI #Multimodal #DeepLearning",
+    "image_style": "photo",
+    "image_prompt": "A highly detailed, intricate neural network visualized as a glowing crystalline structure in a dark, futuristic control room. Beams of light representing visual data and subtle sound wave patterns converge onto its core, which pulses with an ethereal blue and green light. Dramatic side lighting, shallow depth of field, conveying a sense of advanced perception.",
+    "posted": false,
+    "generated_at": "2026-07-10"
   }
 ]
