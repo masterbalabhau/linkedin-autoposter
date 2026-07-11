@@ -159,5 +159,13 @@
     "image_prompt": "A highly detailed, intricate neural network visualized as a glowing crystalline structure in a dark, futuristic control room. Beams of light representing visual data and subtle sound wave patterns converge onto its core, which pulses with an ethereal blue and green light. Dramatic side lighting, shallow depth of field, conveying a sense of advanced perception.",
     "posted": false,
     "generated_at": "2026-07-10"
+  },
+  {
+    "topic": "AI for scientific discovery",
+    "text": "AI is fast-forwarding scientific discovery, not just automating it. Its capacity to model intricate systems like protein structures and material properties is compressing years of lab work into months. We're seeing a fundamental shift from iterative experimentation to predictive design, accelerating breakthroughs in drug development and materials science. What scientific frontier are you most excited for AI to unlock?\n#AI #Science #Discovery",
+    "image_style": "photo",
+    "image_prompt": "A holographic projection of an intricately folded protein structure, shimmering with bioluminescent light, hovers above a sleek, dark laboratory workbench. A scientist's hand reaches towards it, bathed in the cool glow. Focus on the delicate interplay of light and shadow, capturing the wonder of discovery.",
+    "posted": false,
+    "generated_at": "2026-07-11"
   }
 ]
