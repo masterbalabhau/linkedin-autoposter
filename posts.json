@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -170,5 +170,13 @@
     "image": "post_images/2026-07-11-ai-for-scientific-discovery.png",
     "posted_at": "2026-07-11 05:57:37",
     "post_urn": "urn:li:share:7481587481377878016"
+  },
+  {
+    "topic": "Synthetic Data & Data Wall",
+    "text": "The most powerful AI models might soon run out of novel human data to learn from. This looming \"data wall\" is making synthetic data generation essential. We're seeing AI systems increasingly train on data created by other AIs, pushing capabilities beyond what real-world datasets alone can offer, particularly for rare or complex scenarios. What new frontiers does this unlock for model training?\n#AI #SyntheticData #MachineLearning",
+    "image_style": "photo",
+    "image_prompt": "A digital landscape of abstract, luminous data points and connections stretching into a hazy horizon, with ethereal, glowing streams of new information flowing from an unseen source, suggesting infinite expansion. Soft, cool blue and purple lighting, wide-angle, slightly abstract.",
+    "posted": false,
+    "generated_at": "2026-07-12"
   }
 ]
