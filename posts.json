@@ -185,6 +185,7 @@
     "image_style": "photo",
     "image_prompt": "A developer's hand hovers over a darkened workbench, illuminated by the ethereal blue glow of complex, intertwining holographic code projected directly onto the surface. The background is softly blurred, suggesting a futuristic lab environment. Focus is sharp on the hand and the luminous code, with a subtle depth of field.",
     "posted": false,
-    "generated_at": "2026-07-13"
+    "generated_at": "2026-07-13",
+    "image": "post_images/2026-07-13-ai-coding-assistants.png"
   }
 ]
