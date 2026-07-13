@@ -178,5 +178,13 @@
     "image_prompt": "A digital landscape of abstract, luminous data points and connections stretching into a hazy horizon, with ethereal, glowing streams of new information flowing from an unseen source, suggesting infinite expansion. Soft, cool blue and purple lighting, wide-angle, slightly abstract.",
     "posted": false,
     "generated_at": "2026-07-12"
+  },
+  {
+    "topic": "AI coding assistants",
+    "text": "Writing code is becoming less about typing and more about guiding. AI coding assistants are evolving rapidly, shifting the developer's role from syntax generation to higher-level design and problem-solving. We're seeing a clear trajectory where complex architectural decisions and debugging become the core focus, with AI handling much of the boilerplate. What are you building differently with these tools?\n\n#AI #SoftwareDevelopment #DeveloperTools",
+    "image_style": "photo",
+    "image_prompt": "A developer's hand hovers over a darkened workbench, illuminated by the ethereal blue glow of complex, intertwining holographic code projected directly onto the surface. The background is softly blurred, suggesting a futuristic lab environment. Focus is sharp on the hand and the luminous code, with a subtle depth of field.",
+    "posted": false,
+    "generated_at": "2026-07-13"
   }
 ]
