@@ -216,5 +216,13 @@
     "image_prompt": "A shimmering, complex three-dimensional neural network structure, composed of interconnected light pathways, contained within a minimalist, translucent glass sphere. A single human hand, in sharp focus, is cautiously reaching towards the sphere on a dark, reflective surface. Ethereal blue and purple light illuminates the scene, creating a sense of delicate power and controlled energy.",
     "posted": false,
     "generated_at": "2026-07-16"
+  },
+  {
+    "topic": "On-device AI models",
+    "text": "The most powerful AI isn't always in the cloud anymore. Smaller, highly optimized models are shifting advanced AI capabilities directly onto our devices. This enables instant responses, robust privacy, and offline functionality, fundamentally changing how we interact with intelligent systems. What new applications become possible when AI runs entirely in your pocket?\n#OnDeviceAI #EdgeAI #AIInnovation",
+    "image_style": "photo",
+    "image_prompt": "A sleek, modern smartphone, resting on a polished, dark desk, gently radiating a localized, intricate network of glowing data tendrils that softly illuminate its immediate surroundings. Close-up, with a shallow depth of field and a cool, contemplative blue and purple light, hinting at on-device intelligence.",
+    "posted": false,
+    "generated_at": "2026-07-17"
   }
 ]
