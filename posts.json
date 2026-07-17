@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -222,8 +222,10 @@
     "text": "The most powerful AI isn't always in the cloud anymore. Smaller, highly optimized models are shifting advanced AI capabilities directly onto our devices. This enables instant responses, robust privacy, and offline functionality, fundamentally changing how we interact with intelligent systems. What new applications become possible when AI runs entirely in your pocket?\n#OnDeviceAI #EdgeAI #AIInnovation",
     "image_style": "photo",
     "image_prompt": "A sleek, modern smartphone, resting on a polished, dark desk, gently radiating a localized, intricate network of glowing data tendrils that softly illuminate its immediate surroundings. Close-up, with a shallow depth of field and a cool, contemplative blue and purple light, hinting at on-device intelligence.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-17",
-    "image": "post_images/2026-07-17-on-device-ai-models.png"
+    "image": "post_images/2026-07-17-on-device-ai-models.png",
+    "posted_at": "2026-07-17 06:00:05",
+    "post_urn": "urn:li:share:7483762432314826752"
   }
 ]
