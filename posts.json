@@ -242,6 +242,7 @@
     "image_style": "photo",
     "image_prompt": "A sleek, advanced humanoid robot's hand with glowing joints carefully sorts mixed items on a busy industrial workbench, alongside a human hand, in a brightly lit, dynamic factory setting. Shallow depth of field, warm practical lighting, focusing on the intricate task, with subtle motion blur.",
     "posted": false,
-    "generated_at": "2026-07-19"
+    "generated_at": "2026-07-19",
+    "image": "post_images/2026-07-19-robotics-leaving-the-lab.png"
   }
 ]
