@@ -235,5 +235,13 @@
     "image_prompt": "A diverse group of hands, some human, some subtly mechanical, meticulously assembling glowing, interconnected architectural blueprint segments on a vast, polished conference table. The setting is a softly lit, modern global forum, with cool blue and white tones emphasizing collaborative precision and foresight.",
     "posted": false,
     "generated_at": "2026-07-18"
+  },
+  {
+    "topic": "Robotics leaving the lab",
+    "text": "Embodied AI is rapidly transitioning from research labs to real-world deployment. Advances in perception, dexterity, and reasoning are enabling robots to handle increasingly complex, unstructured tasks. This isn't just about automation; it's about intelligent agents learning and adapting in dynamic environments. We're seeing a fundamental redefinition of what's possible in physical automation. What real-world problem would you want an intelligent robot to solve first?\n#AI #Robotics #EmbodiedAI",
+    "image_style": "photo",
+    "image_prompt": "A sleek, advanced humanoid robot's hand with glowing joints carefully sorts mixed items on a busy industrial workbench, alongside a human hand, in a brightly lit, dynamic factory setting. Shallow depth of field, warm practical lighting, focusing on the intricate task, with subtle motion blur.",
+    "posted": false,
+    "generated_at": "2026-07-19"
   }
 ]
