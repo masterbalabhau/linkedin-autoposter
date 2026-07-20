@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -246,5 +246,13 @@
     "image": "post_images/2026-07-19-robotics-leaving-the-lab.png",
     "posted_at": "2026-07-19 06:13:06",
     "post_urn": "urn:li:share:7484490481511514114"
+  },
+  {
+    "topic": "AI Compute Scarcity",
+    "text": "The real AI race isn't just about algorithms; it's about silicon. The insatiable demand for processing power is pushing a fundamental shift from general-purpose GPUs to custom AI chips. This scramble for specialized hardware and manufacturing capacity is now the primary bottleneck, shaping who can build and deploy the most advanced models. How do you see this compute scarcity shaping innovation?\n\n#AI #Compute #Hardware",
+    "image_style": "photo",
+    "image_prompt": "A single, futuristic AI processor chip, glowing with an internal golden light, rests on a dark, polished slab of raw silicon. The chip is viewed with a macro lens, revealing intricate, luminous circuitry. In the deep background, blurred out of focus, are faint, towering silhouettes of a high-tech fabrication plant. Dramatic, high-contrast lighting creates a sense of preciousness and immense industrial scale. Dark, rich tones.",
+    "posted": false,
+    "generated_at": "2026-07-20"
   }
 ]
