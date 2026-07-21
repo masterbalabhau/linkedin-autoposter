@@ -261,6 +261,7 @@
     "image_style": "photo",
     "image_prompt": "A scientist with a thoughtful expression is silhouetted against a vast, shimmering digital library, where holographic books and data fragments float and subtly glow in cool blues and greens. Her hand hovers over a single, illuminated data stream, pulling information into focus. Cinematic, deep shadow, soft rim lighting.",
     "posted": false,
-    "generated_at": "2026-07-21"
+    "generated_at": "2026-07-21",
+    "image": "post_images/2026-07-21-ai-memory-context.png"
   }
 ]
