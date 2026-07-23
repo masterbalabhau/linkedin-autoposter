@@ -273,5 +273,13 @@
     "image_prompt": "A bright, modern open-plan office space buzzing with diverse engineers collaborating around luminous holographic displays showing intricate neural network diagrams. Sunlight streams through large windows, highlighting a sense of energetic, collective problem-solving. A cinematic wide shot with vibrant, optimistic lighting.",
     "posted": false,
     "generated_at": "2026-07-22"
+  },
+  {
+    "topic": "Multimodal AI capabilities",
+    "text": "The real power of multimodal AI isn't just seeing or hearing; it's *acting* on that understanding. Integrating vision, audio, and language allows models to perceive environments more completely, interpret complex instructions, and then execute tasks with greater nuance. This shift from pure comprehension to embodied interaction is unlocking new frontiers for autonomous systems and intelligent assistance. What new capabilities excite you most?\n\n#MultimodalAI #AI #FutureOfAI",
+    "image_style": "photo",
+    "image_prompt": "A sleek, articulate robotic hand with subtle glowing joints delicately interacting with a translucent, multi-layered holographic interface in a dimly lit, advanced research lab. Soft, futuristic blue and green light emanates from the display, illuminating the metallic surfaces with precision.",
+    "posted": false,
+    "generated_at": "2026-07-23"
   }
 ]
