@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -279,8 +279,10 @@
     "text": "The real power of multimodal AI isn't just seeing or hearing; it's *acting* on that understanding. Integrating vision, audio, and language allows models to perceive environments more completely, interpret complex instructions, and then execute tasks with greater nuance. This shift from pure comprehension to embodied interaction is unlocking new frontiers for autonomous systems and intelligent assistance. What new capabilities excite you most?\n\n#MultimodalAI #AI #FutureOfAI",
     "image_style": "photo",
     "image_prompt": "A sleek, articulate robotic hand with subtle glowing joints delicately interacting with a translucent, multi-layered holographic interface in a dimly lit, advanced research lab. Soft, futuristic blue and green light emanates from the display, illuminating the metallic surfaces with precision.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-23",
-    "image": "post_images/2026-07-23-multimodal-ai-capabilities.png"
+    "image": "post_images/2026-07-23-multimodal-ai-capabilities.png",
+    "posted_at": "2026-07-23 06:15:46",
+    "post_urn": "urn:li:share:7485940704276520961"
   }
 ]
