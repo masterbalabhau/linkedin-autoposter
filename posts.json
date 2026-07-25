@@ -299,6 +299,7 @@
     "image_style": "photo",
     "image_prompt": "A medical professional's hand reaching towards a shimmering, translucent 3D holographic projection of a human lung scan, floating in a dimly lit clinical setting. Intricate patterns of light highlight anomalies within the lung, suggesting AI analysis. Focused, serious mood, with cool blue and sterile white lighting.",
     "posted": false,
-    "generated_at": "2026-07-25"
+    "generated_at": "2026-07-25",
+    "image": "post_images/2026-07-25-ai-in-healthcare.png"
   }
 ]
