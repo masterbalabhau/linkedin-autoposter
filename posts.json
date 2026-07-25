@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -298,8 +298,10 @@
     "text": "The subtle patterns AI detects in medical imaging are pushing diagnostic precision to new levels. We're seeing algorithms identify minute anomalies in scans, augmenting clinician capabilities for earlier detection and more personalized treatment pathways. This shift is quietly reshaping healthcare's front lines. Where do you see its most impactful application evolving?\n\n#AI #Healthcare #MedicalImaging",
     "image_style": "photo",
     "image_prompt": "A medical professional's hand reaching towards a shimmering, translucent 3D holographic projection of a human lung scan, floating in a dimly lit clinical setting. Intricate patterns of light highlight anomalies within the lung, suggesting AI analysis. Focused, serious mood, with cool blue and sterile white lighting.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-25",
-    "image": "post_images/2026-07-25-ai-in-healthcare.png"
+    "image": "post_images/2026-07-25-ai-in-healthcare.png",
+    "posted_at": "2026-07-25 06:00:46",
+    "post_urn": "urn:li:share:7486661702940422145"
   }
 ]
