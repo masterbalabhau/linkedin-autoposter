@@ -292,5 +292,13 @@
     "image_prompt": "A lone researcher silhouetted against a vast, glowing display of a complex molecular structure, ethereal light casting long shadows in a futuristic lab. The structure pulses with internal energy, suggesting deep scientific insight. Moody, cool blue and purple tones, wide-angle lens.",
     "posted": false,
     "generated_at": "2026-07-24"
+  },
+  {
+    "topic": "AI in healthcare",
+    "text": "The subtle patterns AI detects in medical imaging are pushing diagnostic precision to new levels. We're seeing algorithms identify minute anomalies in scans, augmenting clinician capabilities for earlier detection and more personalized treatment pathways. This shift is quietly reshaping healthcare's front lines. Where do you see its most impactful application evolving?\n\n#AI #Healthcare #MedicalImaging",
+    "image_style": "photo",
+    "image_prompt": "A medical professional's hand reaching towards a shimmering, translucent 3D holographic projection of a human lung scan, floating in a dimly lit clinical setting. Intricate patterns of light highlight anomalies within the lung, suggesting AI analysis. Focused, serious mood, with cool blue and sterile white lighting.",
+    "posted": false,
+    "generated_at": "2026-07-25"
   }
 ]
