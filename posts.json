@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -303,5 +303,13 @@
     "image": "post_images/2026-07-25-ai-in-healthcare.png",
     "posted_at": "2026-07-25 06:00:46",
     "post_urn": "urn:li:share:7486661702940422145"
+  },
+  {
+    "topic": "AI coding assistants",
+    "text": "The solitary coder is an increasingly anachronistic image. AI coding assistants are fundamentally reshaping software development, moving beyond simple suggestions to act as active co-pilots. This partnership dramatically accelerates iteration cycles, freeing developers to focus on architectural design and complex problem-solving. We're entering an era of truly augmented engineering. What new capabilities are you exploring with these tools?\n#AI #SoftwareDevelopment #DeveloperTools",
+    "image_style": "photo",
+    "image_prompt": "A human hand and a sleek, metallic robotic hand gracefully collaborating over a dynamic holographic interface projecting intricate, glowing lines of code. The scene is set in a dimly lit, futuristic workspace with subtle ambient blue and green light. Focus on the delicate interaction, sharp detail with a shallow depth of field.",
+    "posted": false,
+    "generated_at": "2026-07-26"
   }
 ]
