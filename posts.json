@@ -318,6 +318,7 @@
     "image_style": "photo",
     "image_prompt": "A vast, high-tech data center hall stretching into the distance, filled with thousands of glowing server racks, their indicator lights a sea of blues and greens. A faint electrical hum is almost palpable, conveying immense, continuous energy consumption and processing. The lighting is cool and analytical, emphasizing scale.",
     "posted": false,
-    "generated_at": "2026-07-27"
+    "generated_at": "2026-07-27",
+    "image": "post_images/2026-07-27-ai-inference-economics.png"
   }
 ]
