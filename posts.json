@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -317,8 +317,10 @@
     "text": "We talk a lot about AI training costs, but the real bottleneck is shifting. Deploying large models widely means the cumulative expense of running inference now often eclipses initial training spend. This economic reality is driving intense innovation in efficient architectures and specialized hardware. What new opportunities does this cost shift unlock for you?\n\n#AI #Inference #MLOps",
     "image_style": "photo",
     "image_prompt": "A vast, high-tech data center hall stretching into the distance, filled with thousands of glowing server racks, their indicator lights a sea of blues and greens. A faint electrical hum is almost palpable, conveying immense, continuous energy consumption and processing. The lighting is cool and analytical, emphasizing scale.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-07-27",
-    "image": "post_images/2026-07-27-ai-inference-economics.png"
+    "image": "post_images/2026-07-27-ai-inference-economics.png",
+    "posted_at": "2026-07-27 06:49:20",
+    "post_urn": "urn:li:share:7487398703335600128"
   }
 ]
