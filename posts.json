@@ -337,6 +337,7 @@
     "image_style": "photo",
     "image_prompt": "A lone scientist's hand gently touching a swirling, luminous holographic sphere of complex data patterns in a dimly lit, futuristic laboratory. The sphere emits a soft, controlled blue glow, illuminating the focused expression on the scientist's face. Shallow depth of field, cool color palette, cinematic. The scene conveys careful interaction and profound responsibility.",
     "posted": false,
-    "generated_at": "2026-07-29"
+    "generated_at": "2026-07-29",
+    "image": "post_images/2026-07-29-ai-safety-and-alignment.png"
   }
 ]
