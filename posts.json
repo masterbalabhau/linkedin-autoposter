@@ -330,5 +330,13 @@
     "image_prompt": "A futuristic, translucent data wall made of glowing binary code fragments, being gently pushed apart by unseen forces, revealing a vast, infinite digital landscape beyond. Soft, ambient blue and purple light, with a hint of dramatic lens flare. Shot with a wide-angle lens, deep focus.",
     "posted": false,
     "generated_at": "2026-07-28"
+  },
+  {
+    "topic": "AI Safety and Alignment",
+    "text": "Building powerful AI is one thing; ensuring it acts in our best interest is the real frontier. As models become more autonomous and general-purpose, the risk of emergent, unaligned behaviors grows significantly. This isn't just about 'stopping bad AI,' but designing systems that reliably embody human values and intent. Labs are racing to integrate robust alignment from the ground up. What do you see as the biggest challenge in aligning AI with human values?\n\n#AISafety #AIEthics #MachineLearning",
+    "image_style": "photo",
+    "image_prompt": "A lone scientist's hand gently touching a swirling, luminous holographic sphere of complex data patterns in a dimly lit, futuristic laboratory. The sphere emits a soft, controlled blue glow, illuminating the focused expression on the scientist's face. Shallow depth of field, cool color palette, cinematic. The scene conveys careful interaction and profound responsibility.",
+    "posted": false,
+    "generated_at": "2026-07-29"
   }
 ]
