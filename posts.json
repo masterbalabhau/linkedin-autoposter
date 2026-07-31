@@ -349,5 +349,13 @@
     "image_prompt": "A visionary film director in a sleek, dimly lit post-production studio, standing before a vast, curved screen displaying a photorealistic, AI-generated landscape scene. Her hand hovers, subtly interacting with the glowing interface, the screen's cool blue light reflecting in her focused eyes, with a cinematic shallow depth of field.",
     "posted": false,
     "generated_at": "2026-07-30"
+  },
+  {
+    "topic": "Global AI Regulation",
+    "text": "The EU AI Act isn't just European law; it's a global blueprint in the making. Its tiered, risk-based approach to AI governance is setting a de facto standard. Companies building AI for international markets will increasingly consider these requirements, driving a ripple effect of compliance and responsible AI development worldwide. How will this framework shape your next product strategy?\n#AI #Regulation #GlobalTech",
+    "image_style": "photo",
+    "image_prompt": "A weathered, ancient-looking scroll, partially unfurled, casting a soft golden glow over a translucent, stylized global map. The light illuminates key regions, suggesting influence and guidance. Deep shadows contrast with the warm light, creating a sense of unfolding history and significant impact. Wide-angle, cinematic.",
+    "posted": false,
+    "generated_at": "2026-07-31"
   }
 ]
