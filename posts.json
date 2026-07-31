@@ -356,6 +356,7 @@
     "image_style": "photo",
     "image_prompt": "A weathered, ancient-looking scroll, partially unfurled, casting a soft golden glow over a translucent, stylized global map. The light illuminates key regions, suggesting influence and guidance. Deep shadows contrast with the warm light, creating a sense of unfolding history and significant impact. Wide-angle, cinematic.",
     "posted": false,
-    "generated_at": "2026-07-31"
+    "generated_at": "2026-07-31",
+    "image": "post_images/2026-07-31-global-ai-regulation.png"
   }
 ]
