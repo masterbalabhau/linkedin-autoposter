@@ -367,6 +367,7 @@
     "image_style": "photo",
     "image_prompt": "A close-up, dramatic shot of a human hand lightly touching a workbench, while in the background, a complex array of mechanical tools and robotic arms are subtly illuminated and poised for action, suggesting unseen orchestration. Low-key lighting, deep blues and grays, shallow depth of field.",
     "posted": false,
-    "generated_at": "2026-08-01"
+    "generated_at": "2026-08-01",
+    "image": "post_images/2026-08-01-ai-agents-performing-tasks.png"
   }
 ]
