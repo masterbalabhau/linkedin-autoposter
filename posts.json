@@ -386,6 +386,7 @@
     "image_style": "photo",
     "image_prompt": "A lone figure stands in a vast, dark chamber, surrounded by countless glowing, holographic data streams and shimmering documents, all converging into a central, luminous sphere. The scene is lit by the cool blue light emanating from the data, creating a sense of profound knowledge and infinite information access. Cinematic, wide-angle shot.",
     "posted": false,
-    "generated_at": "2026-08-03"
+    "generated_at": "2026-08-03",
+    "image": "post_images/2026-08-03-ai-long-context-and-retrieval.png"
   }
 ]
