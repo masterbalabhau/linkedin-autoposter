@@ -379,5 +379,13 @@
     "image_prompt": "A sophisticated humanoid robot with a slight sheen, standing confidently at the threshold of a modern research lab, looking out towards a bustling, slightly blurred city street, evening light, wide-angle lens, deep focus, dynamic perspective.",
     "posted": false,
     "generated_at": "2026-08-02"
+  },
+  {
+    "topic": "AI long context and retrieval",
+    "text": "The AI memory wall is falling. Models are moving past static training data, now integrating vast external information through both extended context windows and sophisticated retrieval methods. This allows for more factual, nuanced, and up-to-date responses, transforming how we build intelligent systems. What real-world problems could this dynamic memory unlock?\n#AI #LLMs #RAG",
+    "image_style": "photo",
+    "image_prompt": "A lone figure stands in a vast, dark chamber, surrounded by countless glowing, holographic data streams and shimmering documents, all converging into a central, luminous sphere. The scene is lit by the cool blue light emanating from the data, creating a sense of profound knowledge and infinite information access. Cinematic, wide-angle shot.",
+    "posted": false,
+    "generated_at": "2026-08-03"
   }
 ]
