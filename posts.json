@@ -10,7 +10,7 @@
   },
   {
     "topic": "AI agents doing work",
-    "text": "The agentic AI shift isn't just about better conversations. It’s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
+    "text": "The agentic AI shift isn't just about better conversations. It\u2019s about models actively executing multi-step tasks, connecting tools, and managing state to achieve specific objectives. We're seeing a clear trajectory from conceptual demos to systems delivering tangible, automated work across various domains. This evolution moves us beyond chat interfaces towards genuine, goal-oriented autonomy. What real-world workflows do you see being transformed first?\n#AI #AIagents #Automation",
     "image_style": "photo",
     "image_prompt": "A close-up, high-detail shot of a sleek, articulate robotic hand precisely manipulating intricate holographic data structures that form a complex engineering diagram, while a human hand points towards an unseen objective in the background. Soft, futuristic blue and purple light illuminates the scene, with a shallow depth of field, conveying focus and advanced collaboration.",
     "posted": true,
@@ -325,7 +325,7 @@
   },
   {
     "topic": "Synthetic Data Breakthrough",
-    "text": "The biggest constraint for future AI progress isn't just compute—it's quality data. We're approaching a \"data wall,\" where available real-world data for training advanced models is becoming saturated or too costly. Synthetic data generation is emerging as a critical solution, offering boundless, diverse, and privacy-preserving datasets. This shift is essential for unlocking the next wave of AI capabilities. What new applications become possible with this data paradigm?\n\n#AI #SyntheticData #MachineLearning",
+    "text": "The biggest constraint for future AI progress isn't just compute\u2014it's quality data. We're approaching a \"data wall,\" where available real-world data for training advanced models is becoming saturated or too costly. Synthetic data generation is emerging as a critical solution, offering boundless, diverse, and privacy-preserving datasets. This shift is essential for unlocking the next wave of AI capabilities. What new applications become possible with this data paradigm?\n\n#AI #SyntheticData #MachineLearning",
     "image_style": "photo",
     "image_prompt": "A futuristic, translucent data wall made of glowing binary code fragments, being gently pushed apart by unseen forces, revealing a vast, infinite digital landscape beyond. Soft, ambient blue and purple light, with a hint of dramatic lens flare. Shot with a wide-angle lens, deep focus.",
     "posted": false,
@@ -385,8 +385,10 @@
     "text": "The AI memory wall is falling. Models are moving past static training data, now integrating vast external information through both extended context windows and sophisticated retrieval methods. This allows for more factual, nuanced, and up-to-date responses, transforming how we build intelligent systems. What real-world problems could this dynamic memory unlock?\n#AI #LLMs #RAG",
     "image_style": "photo",
     "image_prompt": "A lone figure stands in a vast, dark chamber, surrounded by countless glowing, holographic data streams and shimmering documents, all converging into a central, luminous sphere. The scene is lit by the cool blue light emanating from the data, creating a sense of profound knowledge and infinite information access. Cinematic, wide-angle shot.",
-    "posted": false,
+    "posted": true,
     "generated_at": "2026-08-03",
-    "image": "post_images/2026-08-03-ai-long-context-and-retrieval.png"
+    "image": "post_images/2026-08-03-ai-long-context-and-retrieval.png",
+    "posted_at": "2026-08-03 06:43:59",
+    "post_urn": "urn:li:share:7489934072312684544"
   }
 ]
