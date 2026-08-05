@@ -398,5 +398,13 @@
     "image_prompt": "A diverse group of hands, some human and some subtly robotic, collaborating to assemble intricate, glowing data circuits on a large, shared workbench. The scene is bathed in a warm, collaborative light, with fine dust motes catching the light. Focus is on the intricate connections being made, suggesting shared innovation.",
     "posted": false,
     "generated_at": "2026-08-04"
+  },
+  {
+    "topic": "Multimodal AI capabilities",
+    "text": "The real world isn't just text. And neither is the next generation of AI. Multimodal models are increasingly seeing, hearing, and understanding context across diverse inputs. This capability shift moves AI beyond data processing to genuine perception, enabling more intuitive interaction and paving the way for adaptive agents that can truly engage with our physical environment. What new applications excite you most?\n\n#AI #MultimodalAI #CognitiveAI",
+    "image_style": "photo",
+    "image_prompt": "A sleek, metallic robotic hand gently touching a dew-kissed leaf, while above, a subtle sound wave pattern shimmers in the air, illuminated by a warm, golden sunrise. The scene emphasizes sensory input and delicate interaction in a natural setting. Shallow depth of field, natural colors.",
+    "posted": false,
+    "generated_at": "2026-08-05"
   }
 ]
