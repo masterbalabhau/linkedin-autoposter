@@ -405,6 +405,7 @@
     "image_style": "photo",
     "image_prompt": "A sleek, metallic robotic hand gently touching a dew-kissed leaf, while above, a subtle sound wave pattern shimmers in the air, illuminated by a warm, golden sunrise. The scene emphasizes sensory input and delicate interaction in a natural setting. Shallow depth of field, natural colors.",
     "posted": false,
-    "generated_at": "2026-08-05"
+    "generated_at": "2026-08-05",
+    "image": "post_images/2026-08-05-multimodal-ai-capabilities.png"
   }
 ]
